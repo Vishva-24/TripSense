@@ -106,8 +106,10 @@ export async function GET(request: NextRequest, context: RouteContext) {
       dayActivityRows.map(async (row) => {
         if (!row.activityId) return row;
 
+        const existingImageUrl = row.imageUrl || "";
         const hasLegacyUrl =
-          row.imageUrl && row.imageUrl.includes("source.unsplash.com");
+          existingImageUrl.includes("source.unsplash.com") ||
+          existingImageUrl.includes("placehold.co");
         const needsImage = !row.imageUrl || hasLegacyUrl;
 
         if (!needsImage) return row;

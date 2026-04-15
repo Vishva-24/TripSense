@@ -71,16 +71,17 @@ export async function GET(request: NextRequest) {
           .orderBy(asc(itineraryDays.dayNumber), asc(activities.time))
           .limit(1);
 
+        const existingImageUrl = firstActivity?.imageUrl || "";
         const hasLegacyUrl =
-          firstActivity?.imageUrl &&
-          firstActivity.imageUrl.includes("source.unsplash.com");
+          existingImageUrl.includes("source.unsplash.com") ||
+          existingImageUrl.includes("placehold.co");
         const needsBackfill = !firstActivity?.imageUrl || hasLegacyUrl;
         let resolvedImage = firstActivity?.imageUrl || null;
 
         if (needsBackfill) {
           resolvedImage = await getLocationImageUrl({
             destination: trip.destination,
-            title: firstActivity?.title || trip.destination,
+            title: trip.destination,
             type: (firstActivity?.type || "landmark") as
               | "food"
               | "landmark"
@@ -99,9 +100,9 @@ export async function GET(request: NextRequest) {
           ...trip,
           coverImage:
             resolvedImage ||
-            `https://placehold.co/640x400/png?text=${encodeURIComponent(
-              `${trip.destination} Trip`
-            )}`
+            `https://picsum.photos/seed/${encodeURIComponent(
+              `${trip.destination} trip cover`
+            )}/960/640`
         };
       })
     );

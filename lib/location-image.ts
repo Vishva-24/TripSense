@@ -10,8 +10,26 @@ type WikiResponse = {
   };
 };
 
-function getPlaceholdImage(label: string) {
-  return `https://placehold.co/480x320/png?text=${encodeURIComponent(label)}`;
+function getFallbackImage(label: string) {
+  return `https://picsum.photos/seed/${encodeURIComponent(label)}/960/640`;
+}
+
+function normalizeSearchQuery(value: string) {
+  return String(value || "")
+    .replace(/[|,;:()[\]{}]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isUsableImageUrl(value: string | null | undefined): value is string {
+  if (!value) return false;
+
+  const url = String(value).trim();
+  if (!/^https?:\/\//i.test(url)) return false;
+  if (/placehold\.co/i.test(url)) return false;
+  if (/\.svg(\?|#|$)/i.test(url)) return false;
+
+  return true;
 }
 
 async function fetchWithTimeout(input: string, timeoutMs: number) {
@@ -35,7 +53,7 @@ async function searchWikipediaImage(query: string) {
   url.searchParams.set("origin", "*");
   url.searchParams.set("generator", "search");
   url.searchParams.set("gsrsearch", query);
-  url.searchParams.set("gsrlimit", "1");
+  url.searchParams.set("gsrlimit", "8");
   url.searchParams.set("prop", "pageimages");
   url.searchParams.set("piprop", "thumbnail");
   url.searchParams.set("pithumbsize", "800");
@@ -47,8 +65,10 @@ async function searchWikipediaImage(query: string) {
   const pages = payload?.query?.pages;
   if (!pages) return null;
 
-  const firstPage = Object.values(pages)[0];
-  const imageUrl = firstPage?.thumbnail?.source;
+  const imageUrl = Object.values(pages)
+    .map((page) => page?.thumbnail?.source || null)
+    .find((candidate) => isUsableImageUrl(candidate));
+
   return imageUrl || null;
 }
 
@@ -67,16 +87,17 @@ async function searchWikipediaSummaryImage(query: string) {
   if (!response.ok) return null;
 
   const payload = (await response.json()) as WikiSummaryResponse;
-  return payload?.thumbnail?.source || null;
+  const imageUrl = payload?.thumbnail?.source || null;
+  return isUsableImageUrl(imageUrl) ? imageUrl : null;
 }
 
 export async function getLocationImageUrl(params: {
   destination: string;
   title: string;
   type: "food" | "landmark" | "transit";
-}) {
-  const destination = params.destination?.trim() || "";
-  const title = params.title?.trim() || "";
+}): Promise<string> {
+  const destination = normalizeSearchQuery(params.destination);
+  const title = normalizeSearchQuery(params.title);
   const typeLabel =
     params.type === "food"
       ? "restaurant"
@@ -84,17 +105,26 @@ export async function getLocationImageUrl(params: {
         ? "transport"
         : "landmark";
 
-  const queries = [
-    `${title} ${destination}`,
-    `${title}`,
-    `${destination} ${typeLabel}`,
-    `${destination} tourism`
-  ].filter(Boolean);
+  const queries = Array.from(
+    new Set(
+      [
+        destination,
+        `${destination} tourism`,
+        `${destination} travel`,
+        `${destination} ${typeLabel}`,
+        `${title} ${destination}`,
+        title,
+        `${title} ${typeLabel}`
+      ]
+        .map((item) => normalizeSearchQuery(item))
+        .filter(Boolean)
+    )
+  );
 
   for (const query of queries) {
     try {
       const image = await searchWikipediaSummaryImage(query);
-      if (image) return image;
+      if (isUsableImageUrl(image)) return image;
     } catch {
       // Continue with next source.
     }
@@ -103,11 +133,11 @@ export async function getLocationImageUrl(params: {
   for (const query of queries) {
     try {
       const image = await searchWikipediaImage(query);
-      if (image) return image;
+      if (isUsableImageUrl(image)) return image;
     } catch {
       // Continue with next query or fallback.
     }
   }
 
-  return getPlaceholdImage(`${title} - ${destination}`);
+  return getFallbackImage(`${title || destination} Trip`);
 }

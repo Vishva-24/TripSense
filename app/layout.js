@@ -12,7 +12,8 @@ const headingFont = Manrope({
 const bodyFont = Nunito_Sans({
   subsets: ["latin"],
   variable: "--font-body",
-  weight: ["400", "500", "600", "700"]
+  weight: ["400", "500", "600", "700"],
+  adjustFontFallback: false
 });
 
 export const metadata = {
