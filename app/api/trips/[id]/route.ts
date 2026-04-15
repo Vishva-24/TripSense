@@ -12,6 +12,12 @@ type RouteContext = {
   };
 };
 
+function buildSeededFallbackImage(destination: string, title: string, type: string) {
+  return `https://picsum.photos/seed/${encodeURIComponent(
+    `${destination}|${title}|${type}`
+  )}/960/640`;
+}
+
 async function resolveRequestUser(request: NextRequest) {
   const userIdRaw = request.nextUrl.searchParams.get("userId")?.trim() || "";
   const userEmailRaw =
@@ -138,6 +144,44 @@ export async function GET(request: NextRequest, context: RouteContext) {
       })
     );
 
+    const usedImageUrls = new Set<string>();
+    const rowsWithUniqueImages = await Promise.all(
+      rowsWithImages.map(async (row) => {
+        if (!row.activityId || !row.imageUrl) return row;
+
+        if (!usedImageUrls.has(row.imageUrl)) {
+          usedImageUrls.add(row.imageUrl);
+          return row;
+        }
+
+        const retryImage = await getLocationImageUrl({
+          destination: tripRow.destination,
+          title: `${row.title || "travel location"} ${row.type || "landmark"}`,
+          type: (row.type || "landmark") as "food" | "landmark" | "transit"
+        });
+
+        const uniqueImage = usedImageUrls.has(retryImage)
+          ? buildSeededFallbackImage(
+              tripRow.destination,
+              row.title || "travel location",
+              row.type || "landmark"
+            )
+          : retryImage;
+
+        usedImageUrls.add(uniqueImage);
+
+        await db
+          .update(activities)
+          .set({ imageUrl: uniqueImage })
+          .where(eq(activities.id, row.activityId));
+
+        return {
+          ...row,
+          imageUrl: uniqueImage
+        };
+      })
+    );
+
     const dayMap = new Map<
       number,
       {
@@ -156,7 +200,7 @@ export async function GET(request: NextRequest, context: RouteContext) {
       }
     >();
 
-    for (const row of rowsWithImages) {
+    for (const row of rowsWithUniqueImages) {
       if (!dayMap.has(row.dayId)) {
         dayMap.set(row.dayId, {
           id: row.dayId,

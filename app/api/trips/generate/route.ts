@@ -107,6 +107,12 @@ function normalizeCostEstimateForDb(value: string | null) {
   return Number.isFinite(parsed) ? String(parsed) : null;
 }
 
+function buildSeededFallbackImage(destination: string, title: string, type: string) {
+  return `https://picsum.photos/seed/${encodeURIComponent(
+    `${destination}|${title}|${type}`
+  )}/960/640`;
+}
+
 function sanitizeItinerary(
   rawOutput: unknown,
   startDate: string,
@@ -332,6 +338,7 @@ export async function POST(request: NextRequest) {
     const sanitizedDays = sanitizeItinerary(geminiOutput, startDate, totalDays);
     let createdTripId: number | null = null;
     const imageCache = new Map<string, string>();
+    const usedImageUrls = new Set<string>();
 
     try {
       const userId = await resolveUserId(db, body);
@@ -377,6 +384,28 @@ export async function POST(request: NextRequest) {
                 });
                 imageCache.set(cacheKey, imageUrl);
               }
+
+              if (usedImageUrls.has(imageUrl)) {
+                const retryImage = await getLocationImageUrl({
+                  destination,
+                  title: `${activity.title} ${activity.type}`,
+                  type: activity.type
+                });
+
+                if (!usedImageUrls.has(retryImage)) {
+                  imageUrl = retryImage;
+                }
+              }
+
+              if (usedImageUrls.has(imageUrl)) {
+                imageUrl = buildSeededFallbackImage(
+                  destination,
+                  activity.title,
+                  activity.type
+                );
+              }
+
+              usedImageUrls.add(imageUrl);
 
               return {
                 dayId: createdDay.id,

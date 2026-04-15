@@ -21,6 +21,47 @@ function normalizeSearchQuery(value: string) {
     .trim();
 }
 
+function dedupeQueries(values: string[]) {
+  return Array.from(
+    new Set(values.map((value) => normalizeSearchQuery(value)).filter(Boolean))
+  );
+}
+
+function trimGenericPrefix(title: string) {
+  return title
+    .replace(
+      /^(arrival|arrive|depart|departure|travel|transfer|visit|explore|exploration|check[\s-]?in|check[\s-]?out|breakfast|lunch|dinner|snack|walk|stroll|tour|metro|bus|train|ferry|cruise|flight)\b[\s:-]*/i,
+      ""
+    )
+    .trim();
+}
+
+function extractPlaceHintsFromTitle(title: string) {
+  const cleanTitle = normalizeSearchQuery(title);
+  if (!cleanTitle) return [];
+
+  const hints = new Set<string>();
+  hints.add(cleanTitle);
+
+  const connectors = [" to ", " in ", " at ", " near ", " around ", " from ", " via "];
+  const lower = cleanTitle.toLowerCase();
+
+  for (const connector of connectors) {
+    const connectorIndex = lower.indexOf(connector);
+    if (connectorIndex >= 0) {
+      const after = cleanTitle.slice(connectorIndex + connector.length).trim();
+      const before = cleanTitle.slice(0, connectorIndex).trim();
+      if (after) hints.add(after);
+      if (before) hints.add(before);
+    }
+  }
+
+  const withoutPrefix = trimGenericPrefix(cleanTitle);
+  if (withoutPrefix) hints.add(withoutPrefix);
+
+  return Array.from(hints).filter((item) => item.length >= 2);
+}
+
 function isUsableImageUrl(value: string | null | undefined): value is string {
   if (!value) return false;
 
@@ -105,23 +146,24 @@ export async function getLocationImageUrl(params: {
         ? "transport"
         : "landmark";
 
-  const queries = Array.from(
-    new Set(
-      [
-        destination,
-        `${destination} tourism`,
-        `${destination} travel`,
-        `${destination} ${typeLabel}`,
-        `${title} ${destination}`,
-        title,
-        `${title} ${typeLabel}`
-      ]
-        .map((item) => normalizeSearchQuery(item))
-        .filter(Boolean)
-    )
+  const placeHints = extractPlaceHintsFromTitle(title);
+
+  const specificQueries = dedupeQueries(
+    placeHints.flatMap((hint) => [
+      destination ? `${hint} ${destination}` : hint,
+      hint,
+      `${hint} ${typeLabel}`
+    ])
   );
 
-  for (const query of queries) {
+  const genericQueries = dedupeQueries([
+    `${destination} ${typeLabel}`,
+    `${destination} tourism`,
+    `${destination} travel`,
+    destination
+  ]);
+
+  for (const query of specificQueries) {
     try {
       const image = await searchWikipediaSummaryImage(query);
       if (isUsableImageUrl(image)) return image;
@@ -130,7 +172,25 @@ export async function getLocationImageUrl(params: {
     }
   }
 
-  for (const query of queries) {
+  for (const query of specificQueries) {
+    try {
+      const image = await searchWikipediaImage(query);
+      if (isUsableImageUrl(image)) return image;
+    } catch {
+      // Continue with next query or fallback.
+    }
+  }
+
+  for (const query of genericQueries) {
+    try {
+      const image = await searchWikipediaSummaryImage(query);
+      if (isUsableImageUrl(image)) return image;
+    } catch {
+      // Continue with next source.
+    }
+  }
+
+  for (const query of genericQueries) {
     try {
       const image = await searchWikipediaImage(query);
       if (isUsableImageUrl(image)) return image;
