@@ -10,14 +10,19 @@ export default function ActivityCard({
   activity,
   onReroll,
   rerolling = false,
-  rerollDisabled = false
+  rerollDisabled = false,
+  showReroll = true
 }) {
   const Icon = iconMap[activity.type] || Landmark;
   const fallbackUrl = `https://placehold.co/480x320/png?text=${encodeURIComponent(activity.title || "Location")}`;
 
   return (
     <div className="relative rounded-2xl border border-app-border bg-white p-4 shadow-sm">
-      <div className="flex items-start justify-between gap-3">
+      <div
+        className={`flex items-start gap-3 ${
+          showReroll ? "justify-between" : ""
+        }`}
+      >
         <div className="flex gap-3">
           <div className="h-20 w-28 shrink-0 overflow-hidden rounded-xl border border-app-border bg-app-sky">
             {activity.imageUrl ? (
@@ -48,20 +53,22 @@ export default function ActivityCard({
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={onReroll}
-          disabled={rerollDisabled || rerolling}
-          className="rounded-lg border border-app-border p-2 text-app-muted transition hover:bg-app-sky"
-          aria-label="Re-roll activity"
-          title="Re-roll"
-        >
-          {rerolling ? (
-            <LoaderCircle size={16} className="animate-spin" />
-          ) : (
-            <RotateCcw size={16} />
-          )}
-        </button>
+        {showReroll ? (
+          <button
+            type="button"
+            onClick={onReroll}
+            disabled={rerollDisabled || rerolling}
+            className="rounded-lg border border-app-border p-2 text-app-muted transition hover:bg-app-sky disabled:cursor-not-allowed disabled:opacity-60"
+            aria-label="Re-roll activity"
+            title="Re-roll"
+          >
+            {rerolling ? (
+              <LoaderCircle size={16} className="animate-spin" />
+            ) : (
+              <RotateCcw size={16} />
+            )}
+          </button>
+        ) : null}
       </div>
     </div>
   );

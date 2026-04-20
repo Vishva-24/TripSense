@@ -181,7 +181,7 @@ export default function TripsHubPage() {
             dates,
             status: "Completed",
             image: trip.coverImage,
-            openHref: `/itinerary?tripId=${trip.id}`
+            openHref: `/trips/${trip.id}`
           };
         });
 
@@ -299,7 +299,7 @@ export default function TripsHubPage() {
                 canOpen
                   ? {
                       ...trip,
-                      openHref: trip.openHref || `/itinerary?tripId=${dbTripId}`
+                      openHref: trip.openHref || `/trips/${dbTripId}`
                     }
                   : trip
               }

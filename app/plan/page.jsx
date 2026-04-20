@@ -227,14 +227,18 @@ export default function PlanTripPage() {
     if (isAuthenticated && savedEmail) {
       return {
         email: savedEmail.toLowerCase(),
-        isGuest: false
+        isGuest: false,
+        country: String(
+          window.localStorage.getItem("tripsense_user_country") || ""
+        ).trim()
       };
     }
 
     // Guest planning should not create an authenticated session in localStorage.
     return {
       email: `guest-${Date.now()}@guest.tripsense.local`,
-      isGuest: true
+      isGuest: true,
+      country: ""
     };
   };
 
@@ -253,7 +257,8 @@ export default function PlanTripPage() {
         travelGroup: formData.travelers,
         vibe: formData.vibe,
         dietaryPrefs: formData.dietary,
-        mustDos: formData.notes
+        mustDos: formData.notes,
+        travelerCountry: plannerIdentity.country
       };
 
       const response = await fetch("/api/trips/generate", {
@@ -298,7 +303,7 @@ export default function PlanTripPage() {
         }
       }
 
-      router.push(`/itinerary?tripId=${encodeURIComponent(result.tripId)}`);
+      router.push(`/trips/${encodeURIComponent(result.tripId)}`);
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "Trip generation failed.";

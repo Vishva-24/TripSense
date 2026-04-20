@@ -54,6 +54,9 @@ export const trips = pgTable("trips", {
     .notNull()
     .default(sql`'{}'::text[]`),
   mustDos: text("must_dos"),
+  estimatedCost: numeric("estimated_cost", { precision: 12, scale: 2 }),
+  estimatedCurrency: varchar("estimated_currency", { length: 12 }),
+  estimatedCostNote: text("estimated_cost_note"),
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
     .notNull()

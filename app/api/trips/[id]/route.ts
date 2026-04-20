@@ -79,6 +79,9 @@ export async function GET(request: NextRequest, context: RouteContext) {
         vibe: trips.vibe,
         dietaryPrefs: trips.dietaryPrefs,
         mustDos: trips.mustDos,
+        estimatedCost: trips.estimatedCost,
+        estimatedCurrency: trips.estimatedCurrency,
+        estimatedCostNote: trips.estimatedCostNote,
         createdAt: trips.createdAt
       })
       .from(trips)

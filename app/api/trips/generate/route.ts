@@ -4,12 +4,18 @@ import { db } from "@/db";
 import { activities, itineraryDays, trips, users } from "@/db/schema";
 import { generateStructuredJson } from "@/lib/gemini";
 import { getLocationImageUrl } from "@/lib/location-image";
+import {
+  normalizeEstimatedCostForDb,
+  normalizeEstimatedCurrency,
+  normalizeEstimateNote
+} from "@/lib/trip-pricing";
 
 export const runtime = "nodejs";
 
 type GenerateTripRequest = {
   userId?: string;
   userEmail?: string;
+  travelerCountry?: string;
   destination?: string;
   startDate?: string;
   endDate?: string;
@@ -35,6 +41,9 @@ type GeneratedDay = {
 };
 
 type GeneratedItinerary = {
+  estimated_total: string | number | null;
+  currency_code: string | null;
+  pricing_note: string | null;
   days: GeneratedDay[];
 };
 
@@ -89,22 +98,6 @@ function parsePositiveInt(value: unknown) {
   const parsed = Number(value);
   if (!Number.isInteger(parsed) || parsed <= 0) return null;
   return parsed;
-}
-
-function normalizeCostEstimateForDb(value: string | null) {
-  if (!value) return null;
-
-  const raw = String(value).trim();
-  if (!raw || raw.toLowerCase() === "null" || raw.toLowerCase() === "n/a") {
-    return null;
-  }
-
-  // Keep only numeric part for DB columns that may be numeric.
-  const numericPart = raw.replace(/[^0-9.]/g, "");
-  if (!numericPart) return null;
-
-  const parsed = Number(numericPart);
-  return Number.isFinite(parsed) ? String(parsed) : null;
 }
 
 function buildSeededFallbackImage(destination: string, title: string, type: string) {
@@ -197,6 +190,7 @@ function buildGeneratePrompt(input: {
   vibe: string[];
   dietaryPrefs: string[];
   mustDos: string;
+  travelerCountry: string;
 }) {
   return `
 SYSTEM INSTRUCTIONS:
@@ -204,6 +198,9 @@ You are TripSense's itinerary engine. Return ONLY valid JSON, without markdown o
 
 REQUIRED JSON SHAPE:
 {
+  "estimated_total": 0,
+  "currency_code": "USD",
+  "pricing_note": "short explanation",
   "days": [
     {
       "day_number": 1,
@@ -222,6 +219,13 @@ REQUIRED JSON SHAPE:
 }
 
 RULES:
+- Return one realistic trip total estimate for the full trip in estimated_total.
+- estimated_total should be a plain number, not a formatted string.
+- Include accommodation, local transport, food, and major activity tickets in the estimate.
+- Exclude international flights, visa fees, and personal shopping.
+- Use the traveler's currency when travelerCountry is provided. If no travelerCountry is provided, use USD.
+- currency_code must be a 3-letter ISO style currency code such as USD, INR, EUR, JPY.
+- pricing_note should be one short sentence explaining what is included.
 - Generate exactly ${input.totalDays} day objects.
 - day_number must start from 1 and be sequential.
 - Dates must stay in range ${input.startDate} to ${input.endDate}.
@@ -241,7 +245,8 @@ ${JSON.stringify(
       travelGroup: input.travelGroup,
       vibe: input.vibe,
       dietaryPrefs: input.dietaryPrefs,
-      mustDos: input.mustDos || "None"
+      mustDos: input.mustDos || "None",
+      travelerCountry: input.travelerCountry || "Guest / Unknown"
     },
     null,
     2
@@ -295,6 +300,7 @@ export async function POST(request: NextRequest) {
     const vibe = safeArray(body.vibe);
     const dietaryPrefs = safeArray(body.dietaryPrefs);
     const mustDos = String(body.mustDos || "").trim();
+    const travelerCountry = String(body.travelerCountry || "").trim();
 
     if (!destination || !startDate || !endDate || !budgetTier || !travelGroup) {
       return NextResponse.json(
@@ -327,7 +333,8 @@ export async function POST(request: NextRequest) {
       travelGroup,
       vibe,
       dietaryPrefs,
-      mustDos
+      mustDos,
+      travelerCountry
     });
 
     const geminiOutput = await generateStructuredJson<GeneratedItinerary>({
@@ -336,6 +343,9 @@ export async function POST(request: NextRequest) {
     });
 
     const sanitizedDays = sanitizeItinerary(geminiOutput, startDate, totalDays);
+    const estimatedCost = normalizeEstimatedCostForDb(geminiOutput?.estimated_total);
+    const estimatedCurrency = normalizeEstimatedCurrency(geminiOutput?.currency_code);
+    const estimatedCostNote = normalizeEstimateNote(geminiOutput?.pricing_note);
     let createdTripId: number | null = null;
     const imageCache = new Map<string, string>();
     const usedImageUrls = new Set<string>();
@@ -354,7 +364,10 @@ export async function POST(request: NextRequest) {
           travelGroup,
           vibe,
           dietaryPrefs,
-          mustDos
+          mustDos,
+          estimatedCost,
+          estimatedCurrency,
+          estimatedCostNote
         })
         .returning({ id: trips.id });
 
@@ -413,7 +426,7 @@ export async function POST(request: NextRequest) {
                 type: activity.type,
                 title: activity.title,
                 description: activity.description,
-                costEstimate: normalizeCostEstimateForDb(activity.cost_estimate),
+                costEstimate: normalizeEstimatedCostForDb(activity.cost_estimate),
                 imageUrl
               };
             })
