@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import TravelConnectSignin from "@/components/ui/travel-connect-signin";
 
 const GUEST_TRIP_CLAIMS_KEY = "tripsense_guest_trip_claims";
 
@@ -114,29 +114,6 @@ async function claimGuestTripsToUser(targetEmail: string) {
   }
 }
 
-function GoogleIcon() {
-  return (
-    <svg viewBox="0 0 48 48" className="h-5 w-5" aria-hidden="true">
-      <path
-        fill="#EA4335"
-        d="M24 9.5c3.3 0 6.2 1.1 8.5 3.2l6.3-6.3C34.9 2.8 29.8.5 24 .5 14.8.5 6.8 5.8 2.9 13.6l7.6 5.9C12.4 13.4 17.7 9.5 24 9.5z"
-      />
-      <path
-        fill="#4285F4"
-        d="M46.5 24.5c0-1.6-.2-3.1-.5-4.5H24v9h12.6c-.5 2.8-2.1 5.1-4.4 6.7l7.1 5.5c4.2-3.8 7.2-9.5 7.2-16.7z"
-      />
-      <path
-        fill="#FBBC05"
-        d="M10.5 28.5c-.5-1.4-.8-2.9-.8-4.5s.3-3.1.8-4.5L2.9 13.6C1 17.1 0 20.9 0 24s1 6.9 2.9 10.4l7.6-5.9z"
-      />
-      <path
-        fill="#34A853"
-        d="M24 47.5c6.5 0 12-2.1 16-6.2l-7.1-5.5c-2 1.3-4.6 2.2-8.9 2.2-6.3 0-11.6-4-13.5-9.9l-7.6 5.9C6.8 42.2 14.8 47.5 24 47.5z"
-      />
-    </svg>
-  );
-}
-
 export default function LoginPage() {
   const router = useRouter();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
@@ -186,11 +163,6 @@ export default function LoginPage() {
       setCountry(savedCountry.trim());
     }
   }, []);
-
-  const submitLabel = useMemo(
-    () => (mode === "signup" ? "Create Account" : "Sign In"),
-    [mode]
-  );
 
   const validateInputs = ():
     | { ok: false; message: string }
@@ -354,199 +326,37 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-24">
-      <div className="mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-6xl items-center justify-center">
-        <section className="w-full max-w-md rounded-2xl border border-white/60 bg-white/90 p-6 shadow-sm backdrop-blur-sm md:p-8">
-          <header className="mb-6 text-center">
-            <h1 className="text-2xl font-extrabold text-slate-800">
-              {mode === "signup" ? "Create your TripSense account" : "Welcome back to TripSense"}
-            </h1>
-            <p className="mt-2 text-sm text-slate-500">
-              {mode === "signup"
-                ? "Sign up to start saving and managing your itineraries."
-                : "Log in to access your saved itineraries."}
-            </p>
-          </header>
-
-          {isLoggedIn ? (
-            <div className="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-700">
-              Signed in as {activeEmail}
-            </div>
-          ) : null}
-
-          <div className="space-y-4">
-            <button
-              type="button"
-              onClick={() => {
-                void handleGoogleContinue();
-              }}
-              disabled={isSubmitting}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
-            >
-              <GoogleIcon />
-              Continue with Google
-            </button>
-
-            <div className="flex items-center gap-3 text-xs text-slate-400">
-              <span className="h-px flex-1 bg-slate-200" />
-              <span>or continue with email</span>
-              <span className="h-px flex-1 bg-slate-200" />
-            </div>
-
-            <form className="space-y-3" onSubmit={handleSubmit}>
-              {mode === "signup" ? (
-                <div className="space-y-1.5">
-                  <label htmlFor="name" className="text-sm font-semibold text-slate-700">
-                    Your Name
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="Enter your name"
-                    value={name}
-                    onChange={(event) => setName(event.target.value)}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
-                  />
-                </div>
-              ) : null}
-
-              <div className="space-y-1.5">
-                <label htmlFor="email" className="text-sm font-semibold text-slate-700">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
-                />
-              </div>
-
-              {mode === "signup" ? (
-                <div className="space-y-1.5">
-                  <label htmlFor="country" className="text-sm font-semibold text-slate-700">
-                    Country
-                  </label>
-                  <input
-                    id="country"
-                    type="text"
-                    placeholder="Enter your country"
-                    value={country}
-                    onChange={(event) => setCountry(event.target.value)}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
-                  />
-                </div>
-              ) : null}
-
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="password"
-                  className="text-sm font-semibold text-slate-700"
-                >
-                  Password
-                </label>
-                <div className="relative">
-                  <input
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 pr-16 text-sm text-slate-800 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute inset-y-0 right-0 px-3 text-xs font-semibold text-slate-600 hover:text-slate-800"
-                  >
-                    {showPassword ? "Hide" : "Show"}
-                  </button>
-                </div>
-              </div>
-
-              {mode === "signup" ? (
-                <div className="space-y-1.5">
-                  <label
-                    htmlFor="confirm-password"
-                    className="text-sm font-semibold text-slate-700"
-                  >
-                    Confirm Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      id="confirm-password"
-                      type={showConfirmPassword ? "text" : "password"}
-                      placeholder="Re-enter your password"
-                      value={confirmPassword}
-                      onChange={(event) => setConfirmPassword(event.target.value)}
-                      className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 pr-16 text-sm text-slate-800 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowConfirmPassword((prev) => !prev)}
-                      className="absolute inset-y-0 right-0 px-3 text-xs font-semibold text-slate-600 hover:text-slate-800"
-                    >
-                      {showConfirmPassword ? "Hide" : "Show"}
-                    </button>
-                  </div>
-                </div>
-              ) : null}
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="mt-2 inline-flex w-full items-center justify-center rounded-xl bg-slate-800 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700"
-              >
-                {isSubmitting ? "Please wait..." : submitLabel}
-              </button>
-            </form>
-          </div>
-
-          {error ? (
-            <p className="mt-4 rounded-xl bg-rose-50 px-3 py-2 text-sm font-semibold text-rose-700">
-              {error}
-            </p>
-          ) : null}
-
-          <p className="mt-6 text-center text-sm text-slate-500">
-            {mode === "signup"
-              ? "Already have an account?"
-              : "Don't have an account?"}{" "}
-            <button
-              type="button"
-              onClick={() => {
-                setMode((prev) => (prev === "signin" ? "signup" : "signin"));
-                setError("");
-                setPassword("");
-                setConfirmPassword("");
-              }}
-              className="font-semibold text-slate-800 hover:underline"
-            >
-              {mode === "signup" ? "Sign in" : "Sign up"}
-            </button>
-          </p>
-
-          {isLoggedIn ? (
-            <div className="mt-4 flex justify-center gap-3">
-              <Link
-                href="/trips"
-                className="rounded-full border border-slate-300 px-4 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
-              >
-                Go to My Trips
-              </Link>
-              <button
-                type="button"
-                onClick={handleSignOut}
-                className="rounded-full border border-rose-200 px-4 py-1.5 text-xs font-semibold text-rose-700 transition hover:bg-rose-50"
-              >
-                Log out
-              </button>
-            </div>
-          ) : null}
-        </section>
-      </div>
-    </main>
+    <TravelConnectSignin
+      mode={mode}
+      onModeChange={(nextMode) => {
+        setMode(nextMode);
+        setError("");
+        setPassword("");
+        setConfirmPassword("");
+      }}
+      email={email}
+      password={password}
+      name={name}
+      country={country}
+      confirmPassword={confirmPassword}
+      showPassword={showPassword}
+      showConfirmPassword={showConfirmPassword}
+      isSubmitting={isSubmitting}
+      isLoggedIn={isLoggedIn}
+      activeEmail={activeEmail}
+      error={error}
+      onEmailChange={setEmail}
+      onPasswordChange={setPassword}
+      onNameChange={setName}
+      onCountryChange={setCountry}
+      onConfirmPasswordChange={setConfirmPassword}
+      onTogglePassword={() => setShowPassword((prev) => !prev)}
+      onToggleConfirmPassword={() => setShowConfirmPassword((prev) => !prev)}
+      onGoogleSignIn={() => {
+        void handleGoogleContinue();
+      }}
+      onSubmit={handleSubmit}
+      onSignOut={handleSignOut}
+    />
   );
 }

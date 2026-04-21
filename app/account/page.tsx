@@ -9,6 +9,7 @@ import {
   Trash2,
   User
 } from "lucide-react";
+import FloatingActionMenu from "@/components/ui/floating-action-menu";
 
 type AccountTab = "profile" | "defaults" | "security";
 
@@ -333,6 +334,12 @@ export default function AccountPage() {
     });
   };
 
+  const switchTab = (tab: AccountTab) => {
+    setActiveTab(tab);
+    setErrorMessage("");
+    setSuccessMessage("");
+  };
+
   if (!isHydrated) {
     return (
       <main className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-24">
@@ -362,11 +369,7 @@ export default function AccountPage() {
               <button
                 key={tab.key}
                 type="button"
-                onClick={() => {
-                  setActiveTab(tab.key);
-                  setErrorMessage("");
-                  setSuccessMessage("");
-                }}
+                onClick={() => switchTab(tab.key)}
                 className={`-mb-px border-b-2 pb-2 text-sm font-semibold transition ${
                   isActive
                     ? "border-slate-800 text-slate-800"
@@ -636,6 +639,31 @@ export default function AccountPage() {
             </div>
           </section>
         ) : null}
+
+        <FloatingActionMenu
+          options={[
+            {
+              label: "Profile",
+              Icon: <User className="h-4 w-4" />,
+              onClick: () => switchTab("profile")
+            },
+            {
+              label: "Travel Defaults",
+              Icon: <SlidersHorizontal className="h-4 w-4" />,
+              onClick: () => switchTab("defaults")
+            },
+            {
+              label: "Security",
+              Icon: <ShieldAlert className="h-4 w-4" />,
+              onClick: () => switchTab("security")
+            },
+            {
+              label: "Log Out",
+              Icon: <LogOut className="h-4 w-4" />,
+              onClick: handleLogout
+            }
+          ]}
+        />
       </div>
     </main>
   );

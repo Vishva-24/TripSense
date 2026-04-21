@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Compass, PlusCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Compass, PlusCircle, Search, UserCircle2 } from "lucide-react";
 import Link from "next/link";
 import TripCard from "@/components/TripCard";
+import FloatingActionMenu from "@/components/ui/floating-action-menu";
 
 const GUEST_TRIP_CLAIMS_KEY = "tripsense_guest_trip_claims";
 
@@ -105,6 +107,7 @@ async function claimGuestTripsForUser(userEmail) {
 }
 
 export default function TripsHubPage() {
+  const router = useRouter();
   const [dbTrips, setDbTrips] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [loadError, setLoadError] = useState("");
@@ -329,6 +332,26 @@ export default function TripsHubPage() {
           No saved trips yet. Click "Plan a New Trip" to create your first itinerary.
         </p>
       ) : null}
+
+      <FloatingActionMenu
+        options={[
+          {
+            label: "Plan New Trip",
+            Icon: <PlusCircle className="h-4 w-4" />,
+            onClick: () => router.push("/plan")
+          },
+          {
+            label: "Discover",
+            Icon: <Search className="h-4 w-4" />,
+            onClick: () => router.push("/discover")
+          },
+          {
+            label: "Account",
+            Icon: <UserCircle2 className="h-4 w-4" />,
+            onClick: () => router.push("/account")
+          }
+        ]}
+      />
     </main>
   );
 }
