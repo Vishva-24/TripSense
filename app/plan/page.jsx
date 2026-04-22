@@ -9,23 +9,15 @@ import Button from "@/components/ui/Button";
 import OptionChip from "@/components/ui/OptionChip";
 import { FormInput, FormTextArea } from "@/components/ui/FormInput";
 import { useTripPlanner } from "@/context/TripPlannerContext";
-
-const travelerOptions = ["Solo", "Couple", "Family", "Friends"];
-const budgetOptions = ["Shoestring", "Standard", "Luxury"];
-const vibeOptions = [
-  "Chill",
-  "Adventure",
-  "Culture",
-  "Party",
-  "Food-focused",
-  "Urban",
-  "Foodie",
-  "Relaxation",
-  "Nature",
-  "History",
-  "Luxury"
-];
-const dietaryOptions = ["None", "Vegan", "Vegetarian", "Halal", "Gluten-Free"];
+import {
+  budgetOptions,
+  dietaryOptions,
+  getTodayIsoDate,
+  isPastPlannerDate,
+  normalizePlannerVibes,
+  travelerOptions,
+  vibeOptions
+} from "@/lib/trip-planner-options";
 
 const TOTAL_STEPS = 6;
 const GUEST_TRIP_CLAIMS_KEY = "tripsense_guest_trip_claims";
@@ -84,6 +76,7 @@ export default function PlanTripPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generateError, setGenerateError] = useState("");
   const [prefillMessage, setPrefillMessage] = useState("");
+  const todayIsoDate = useMemo(() => getTodayIsoDate(), []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -102,11 +95,7 @@ export default function PlanTripPage() {
         updateFormField("destination", destinationFromPrefill);
       }
 
-      const prefills = Array.isArray(parsed?.vibe)
-        ? parsed.vibe
-            .map((item) => String(item))
-            .filter((item) => vibeOptions.includes(item))
-        : [];
+      const prefills = normalizePlannerVibes(parsed?.vibe);
 
       if (prefills.length > 0) {
         updateFormField("vibe", Array.from(new Set(prefills)));
@@ -153,13 +142,19 @@ export default function PlanTripPage() {
     return new Date(formData.startDate) <= new Date(formData.endDate);
   }, [formData.endDate, formData.startDate]);
 
+  const hasPastStartDate = useMemo(
+    () => isPastPlannerDate(formData.startDate),
+    [formData.startDate]
+  );
+
   const canContinue = useMemo(() => {
     if (step === 1) {
       return Boolean(
         formData.destination.trim() &&
         formData.startDate.trim() &&
         formData.endDate.trim() &&
-        isDateOrderValid
+        isDateOrderValid &&
+        !hasPastStartDate
       );
     }
 
@@ -172,7 +167,7 @@ export default function PlanTripPage() {
     }
 
     return true;
-  }, [formData, isDateOrderValid, step]);
+  }, [formData, hasPastStartDate, isDateOrderValid, step]);
 
   const toggleMultiOption = (fieldName, value) => {
     const currentValues = formData[fieldName];
@@ -243,6 +238,11 @@ export default function PlanTripPage() {
   };
 
   const generateTrip = async () => {
+    if (isPastPlannerDate(formData.startDate)) {
+      setGenerateError("Start date cannot be in the past.");
+      return;
+    }
+
     try {
       setGenerateError("");
       setIsGenerating(true);
@@ -371,6 +371,7 @@ export default function PlanTripPage() {
                   label="Start Date"
                   type="date"
                   value={formData.startDate}
+                  min={todayIsoDate}
                   onChange={(event) =>
                     updateFormField("startDate", event.target.value)
                   }
@@ -379,8 +380,14 @@ export default function PlanTripPage() {
                   label="End Date"
                   type="date"
                   value={formData.endDate}
+                  min={formData.startDate || todayIsoDate}
                   onChange={(event) => updateFormField("endDate", event.target.value)}
                 />
+                {hasPastStartDate && (
+                  <p className="md:col-span-3 text-sm font-semibold text-rose-600">
+                    Start date cannot be in the past.
+                  </p>
+                )}
                 {!isDateOrderValid && (
                   <p className="md:col-span-3 text-sm font-semibold text-rose-600">
                     End date should be after start date.

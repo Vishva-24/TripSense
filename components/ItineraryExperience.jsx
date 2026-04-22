@@ -15,6 +15,15 @@ import {
 } from "lucide-react";
 import ActivityCard from "@/components/ActivityCard";
 import UtilityDrawer from "@/components/UtilityDrawer";
+import {
+  budgetOptions,
+  dietaryOptions,
+  getTodayIsoDate,
+  isPastPlannerDate,
+  normalizePlannerVibes,
+  travelerOptions,
+  vibeOptions
+} from "@/lib/trip-planner-options";
 import { formatStoredPrice } from "@/lib/trip-pricing";
 
 function formatSingleDate(dateValue) {
@@ -27,6 +36,18 @@ function formatSingleDate(dateValue) {
     month: "short",
     day: "numeric",
     year: "numeric"
+  });
+}
+
+function formatDayChipDate(dateValue) {
+  if (!dateValue) return "";
+
+  const parsed = new Date(dateValue);
+  if (Number.isNaN(parsed.getTime())) return String(dateValue);
+
+  return parsed.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric"
   });
 }
 
@@ -51,37 +72,11 @@ function formatDateRange(startDate, endDate) {
   })}`;
 }
 
-function buildPackingList(destination) {
-  const place = destination || "your trip";
-  return [
-    { id: "pack-1", label: `Comfortable shoes for ${place}`, checked: true },
-    { id: "pack-2", label: "Universal power adapter", checked: false },
-    { id: "pack-3", label: "Reusable water bottle", checked: false }
-  ];
-}
-
 function getFallbackImage(title, destination) {
   return `https://placehold.co/480x320/png?text=${encodeURIComponent(
     `${title} - ${destination}`
   )}`;
 }
-
-const travelerOptions = ["Solo", "Couple", "Family", "Friends"];
-const budgetOptions = ["Shoestring", "Standard", "Luxury"];
-const vibeOptions = [
-  "Chill",
-  "Adventure",
-  "Culture",
-  "Party",
-  "Food-focused",
-  "Urban",
-  "Foodie",
-  "Relaxation",
-  "Nature",
-  "History",
-  "Luxury"
-];
-const dietaryOptions = ["None", "Vegan", "Vegetarian", "Halal", "Gluten-Free"];
 
 function safeArray(value) {
   if (!Array.isArray(value)) return [];
@@ -107,6 +102,10 @@ export default function ItineraryExperience({
   const [updatePlanError, setUpdatePlanError] = useState("");
   const [isTripSelectionResolved, setIsTripSelectionResolved] = useState(false);
   const [isAuthenticatedUser, setIsAuthenticatedUser] = useState(false);
+  const [selectedDayNumber, setSelectedDayNumber] = useState(null);
+  const [customRequestTarget, setCustomRequestTarget] = useState(null);
+  const [customRequestText, setCustomRequestText] = useState("");
+  const [customRequestError, setCustomRequestError] = useState("");
   const hasPushedHistoryGuardRef = useRef(false);
   const [editForm, setEditForm] = useState({
     destination: "",
@@ -118,6 +117,7 @@ export default function ItineraryExperience({
     dietaryPrefs: ["None"],
     mustDos: ""
   });
+  const todayIsoDate = useMemo(() => getTodayIsoDate(), []);
 
   useEffect(() => {
     let isDisposed = false;
@@ -336,6 +336,33 @@ export default function ItineraryExperience({
     ? formatDateRange(apiTripData.trip.startDate, apiTripData.trip.endDate)
     : "Dates not set";
 
+  useEffect(() => {
+    if (!normalizedDays.length) {
+      setSelectedDayNumber(null);
+      return;
+    }
+
+    setSelectedDayNumber((currentDayNumber) => {
+      if (
+        currentDayNumber &&
+        normalizedDays.some((day) => day.dayNumber === currentDayNumber)
+      ) {
+        return currentDayNumber;
+      }
+
+      return normalizedDays[0].dayNumber;
+    });
+  }, [normalizedDays]);
+
+  const selectedDay = useMemo(() => {
+    if (!normalizedDays.length) return null;
+
+    return (
+      normalizedDays.find((day) => day.dayNumber === selectedDayNumber) ||
+      normalizedDays[0]
+    );
+  }, [normalizedDays, selectedDayNumber]);
+
   const travelers = apiTripData?.trip?.travelGroup || "-";
   const budget = apiTripData?.trip?.budgetTier || "-";
   const mapSrc = destination
@@ -344,10 +371,6 @@ export default function ItineraryExperience({
   const weatherAlert = apiTripData?.trip?.destination
     ? `Weather can change quickly in ${apiTripData.trip.destination}. Check live forecast before each day starts.`
     : "Weather can change quickly. Check forecast before each day starts.";
-  const packingList = useMemo(
-    () => buildPackingList(apiTripData?.trip?.destination || ""),
-    [apiTripData?.trip?.destination]
-  );
   const estimatedCostLabel = useMemo(
     () =>
       formatStoredPrice(
@@ -602,70 +625,101 @@ export default function ItineraryExperience({
           </Link>
         </header>
 
-        <section className="grid gap-6 lg:grid-cols-[230px_minmax(0,1fr)]">
-          <aside className="card-surface h-fit space-y-5 p-5">
-            <div>
-              <h2 className="text-lg font-bold text-app-slate">{tripTitle}</h2>
-              <p className="mt-1 text-sm text-app-muted">{tripDates}</p>
-            </div>
+        <section className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+          <div className="space-y-4">
+            <aside className="card-surface h-fit space-y-5 p-5">
+              <div>
+                <h2 className="break-words text-lg font-bold leading-tight text-app-slate">
+                  {tripTitle}
+                </h2>
+                <p className="mt-1 text-sm text-app-muted">{tripDates}</p>
+              </div>
 
-            <div className="space-y-3">
-              <p className="flex items-center gap-2 text-sm text-app-muted">
-                <Users size={16} />
-                Travelers: {travelers}
-              </p>
-              <p className="flex items-center gap-2 text-sm text-app-muted">
-                <Clock3 size={16} />
-                Budget: {budget}
-              </p>
-              <p className="flex items-center gap-2 text-sm text-app-muted">
-                <Check size={16} />
-                {normalizedDays.length} days planned
-              </p>
-            </div>
+              <div className="space-y-3">
+                <p className="flex items-center gap-2 text-sm text-app-muted">
+                  <Users size={16} />
+                  Travelers: {travelers}
+                </p>
+                <p className="flex items-center gap-2 text-sm text-app-muted">
+                  <Clock3 size={16} />
+                  Budget: {budget}
+                </p>
+                <p className="flex items-center gap-2 text-sm text-app-muted">
+                  <Check size={16} />
+                  {normalizedDays.length} days planned
+                </p>
+              </div>
 
-            <button
-              type="button"
-              onClick={handleOpenEdit}
-              disabled={!apiTripData?.trip?.id}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-app-border px-3 py-2 text-sm font-semibold text-app-slate transition hover:bg-app-sky disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              <Pencil size={15} />
-              Edit Plan Options
-            </button>
-          </aside>
+              <button
+                type="button"
+                onClick={handleOpenEdit}
+                disabled={!apiTripData?.trip?.id}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-app-border px-3 py-2 text-sm font-semibold text-app-slate transition hover:bg-app-sky disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                <Pencil size={15} />
+                Edit Plan Options
+              </button>
+            </aside>
+
+            <aside className="card-surface h-fit space-y-3 p-5">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-app-muted">
+                  {isCustomizing ? "Customization unlocked" : "Read-only itinerary"}
+                </p>
+                <h3 className="mt-2 text-lg font-bold text-app-slate">
+                  Trip Timeline
+                </h3>
+                <p className="mt-1 text-sm leading-6 text-app-muted">
+                  {isCustomizing
+                    ? "Swapping is enabled. Re-roll any activity you want to refine."
+                    : "Turn on customization when you want to swap activities or make adjustments."}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsCustomizing((prev) => !prev)}
+                className={`inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition ${
+                  isCustomizing
+                    ? "border border-app-border bg-white text-app-slate hover:bg-blue-50"
+                    : "bg-app-slate text-white hover:opacity-90"
+                }`}
+              >
+                {isCustomizing ? <Lock size={16} /> : <LockOpen size={16} />}
+                {isCustomizing ? "Customization Enabled" : "Customize this Trip"}
+              </button>
+            </aside>
+          </div>
 
           <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
             <section className="card-surface max-h-[75vh] space-y-6 overflow-y-auto p-5">
               <div className="sticky top-0 z-20 -mx-5 -mt-5 border-b border-app-border/70 bg-white/90 px-5 py-4 backdrop-blur">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-app-muted">
-                      {isCustomizing ? "Customization unlocked" : "Read-only itinerary"}
-                    </p>
-                    <h2 className="mt-1 text-lg font-bold text-app-slate">
-                      Trip Timeline
-                    </h2>
-                    <p className="text-sm text-app-muted">
-                      {isCustomizing
-                        ? "Swapping is enabled. Re-roll any activity you want to refine."
-                        : "Turn on customization when you want to swap activities or make adjustments."}
-                    </p>
+                {normalizedDays.length > 0 ? (
+                  <div className="flex gap-3 overflow-x-auto pb-2">
+                    {normalizedDays.map((day) => {
+                      const isActive = day.dayNumber === selectedDay?.dayNumber;
+                      return (
+                        <button
+                          key={day.dayNumber}
+                          type="button"
+                          onClick={() => setSelectedDayNumber(day.dayNumber)}
+                          className={`shrink-0 rounded-[2rem] border px-5 py-4 text-left transition ${
+                            isActive
+                              ? "border-app-slate bg-app-slate text-white shadow-lg shadow-slate-900/15"
+                              : "border-app-border bg-white text-app-slate hover:border-blue-200 hover:bg-app-sky/55"
+                          }`}
+                        >
+                          <span className="block text-[0.7rem] font-bold uppercase tracking-[0.2em] opacity-75">
+                            Day {day.dayNumber}
+                          </span>
+                          <span className="mt-2 block text-xl font-extrabold leading-none">
+                            {formatDayChipDate(day.date)}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={() => setIsCustomizing((prev) => !prev)}
-                    className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition ${
-                      isCustomizing
-                        ? "border border-app-border bg-app-sky text-app-slate hover:bg-blue-100"
-                        : "bg-app-slate text-white hover:opacity-90"
-                    }`}
-                  >
-                    {isCustomizing ? <Lock size={16} /> : <LockOpen size={16} />}
-                    {isCustomizing ? "Customization Enabled" : "Customize this Trip"}
-                  </button>
-                </div>
+                ) : null}
               </div>
 
               {isLoading ? (
@@ -686,31 +740,22 @@ export default function ItineraryExperience({
                 </p>
               ) : null}
 
-              {normalizedDays.map((day) => (
-                <div key={day.dayNumber} className="space-y-3">
-                  <div className="sticky top-24 z-10 rounded-xl bg-app-sandSoft px-3 py-2">
-                    <h3 className="font-bold text-app-slate">
-                      Day {day.dayNumber}: {day.title}
-                    </h3>
-                    <p className="text-xs font-semibold uppercase tracking-wide text-app-muted">
-                      {day.date}
-                    </p>
-                  </div>
-
-                  <div className="space-y-3">
-                    {day.activities.map((activity) => (
-                      <ActivityCard
-                        key={activity.id}
-                        activity={activity}
-                        rerolling={rerollingActivityId === String(activity.id)}
-                        rerollDisabled={!apiTripData?.trip?.id || !isCustomizing}
-                        showReroll={isCustomizing}
-                        onReroll={() => handleReroll({ activity, day })}
-                      />
-                    ))}
-                  </div>
+              {selectedDay ? (
+                <div key={selectedDay.dayNumber} className="space-y-3">
+                  {selectedDay.activities.map((activity) => (
+                    <ActivityCard
+                      key={activity.id}
+                      activity={activity}
+                      rerolling={rerollingActivityId === String(activity.id)}
+                      rerollDisabled={!apiTripData?.trip?.id || !isCustomizing}
+                      showReroll={isCustomizing}
+                      onReroll={() =>
+                        handleReroll({ activity, day: selectedDay })
+                      }
+                    />
+                  ))}
                 </div>
-              ))}
+              ) : null}
 
               {!isLoading && !loadError && normalizedDays.length === 0 ? (
                 <p className="rounded-xl bg-app-sky px-4 py-3 text-sm font-semibold text-app-slate">
@@ -722,7 +767,7 @@ export default function ItineraryExperience({
             </section>
 
             <aside className="space-y-4">
-              <div className="card-surface h-[250px] p-5">
+              <div className="card-surface space-y-3 overflow-hidden p-5">
                 <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-app-muted">
                   Map
                 </h3>
@@ -741,17 +786,20 @@ export default function ItineraryExperience({
                     </div>
                   )}
                 </div>
-                <p className="mt-2 flex items-center gap-2 text-xs font-semibold text-app-muted">
-                  <MapPin size={14} />
-                  {destination || "No location selected"}
-                </p>
+                <div className="w-full min-w-0 overflow-hidden">
+                  <p className="flex w-full min-w-0 items-start gap-2 text-xs font-semibold text-app-muted">
+                    <MapPin size={14} className="mt-0.5 shrink-0" />
+                    <span className="block min-w-0 flex-1 break-words leading-5">
+                      {destination || "No location selected"}
+                    </span>
+                  </p>
+                </div>
               </div>
 
               <UtilityDrawer
                 weatherAlert={weatherAlert}
                 estimatedCost={estimatedCostLabel}
                 estimateNote={estimateNote}
-                packingList={packingList}
               />
             </aside>
           </div>

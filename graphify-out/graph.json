@@ -9,7 +9,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\drizzle.config.ts",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_drizzle_config_ts",
-      "community": 25,
+      "community": 32,
       "norm_label": "drizzle.config.ts"
     },
     {
@@ -18,7 +18,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\next-env.d.ts",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_next_env_d_ts",
-      "community": 26,
+      "community": 33,
       "norm_label": "next-env.d.ts"
     },
     {
@@ -27,7 +27,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\next.config.mjs",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_next_config_mjs",
-      "community": 27,
+      "community": 34,
       "norm_label": "next.config.mjs"
     },
     {
@@ -36,7 +36,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\postcss.config.mjs",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_postcss_config_mjs",
-      "community": 28,
+      "community": 35,
       "norm_label": "postcss.config.mjs"
     },
     {
@@ -45,7 +45,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\tailwind.config.js",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_tailwind_config_js",
-      "community": 29,
+      "community": 36,
       "norm_label": "tailwind.config.js"
     },
     {
@@ -54,16 +54,16 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\layout.js",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_app_layout_js",
-      "community": 14,
+      "community": 15,
       "norm_label": "layout.js"
     },
     {
       "label": "RootLayout()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\layout.js",
-      "source_location": "L24",
+      "source_location": "L27",
       "id": "layout_rootlayout",
-      "community": 14,
+      "community": 15,
       "norm_label": "rootlayout()"
     },
     {
@@ -72,98 +72,8 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "community": 3,
+      "community": 37,
       "norm_label": "page.tsx"
-    },
-    {
-      "label": "applyLoveSwipe()",
-      "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L314",
-      "id": "page_applyloveswipe",
-      "community": 3,
-      "norm_label": "applyloveswipe()"
-    },
-    {
-      "label": "resolvePersona()",
-      "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L322",
-      "id": "page_resolvepersona",
-      "community": 3,
-      "norm_label": "resolvepersona()"
-    },
-    {
-      "label": "derivePlannerVibes()",
-      "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L368",
-      "id": "page_deriveplannervibes",
-      "community": 3,
-      "norm_label": "deriveplannervibes()"
-    },
-    {
-      "label": "deriveBudgetHint()",
-      "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L382",
-      "id": "page_derivebudgethint",
-      "community": 3,
-      "norm_label": "derivebudgethint()"
-    },
-    {
-      "label": "resolveImageStage()",
-      "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L411",
-      "id": "page_resolveimagestage",
-      "community": 3,
-      "norm_label": "resolveimagestage()"
-    },
-    {
-      "label": "resolveImageSource()",
-      "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L413",
-      "id": "page_resolveimagesource",
-      "community": 3,
-      "norm_label": "resolveimagesource()"
-    },
-    {
-      "label": "markImageError()",
-      "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L420",
-      "id": "page_markimageerror",
-      "community": 3,
-      "norm_label": "markimageerror()"
-    },
-    {
-      "label": "applySwipeResult()",
-      "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L443",
-      "id": "page_applyswiperesult",
-      "community": 3,
-      "norm_label": "applyswiperesult()"
-    },
-    {
-      "label": "triggerSwipe()",
-      "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L464",
-      "id": "page_triggerswipe",
-      "community": 3,
-      "norm_label": "triggerswipe()"
-    },
-    {
-      "label": "goToPlannerWithPrefill()",
-      "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L482",
-      "id": "page_gotoplannerwithprefill",
-      "community": 3,
-      "norm_label": "gotoplannerwithprefill()"
     },
     {
       "label": "page.tsx",
@@ -171,71 +81,80 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_app_account_page_tsx",
-      "community": 6,
+      "community": 2,
       "norm_label": "page.tsx"
     },
     {
       "label": "isValidEmail()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L37",
+      "source_location": "L28",
       "id": "page_isvalidemail",
-      "community": 6,
+      "community": 2,
       "norm_label": "isvalidemail()"
     },
     {
       "label": "handleSaveProfile()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L130",
+      "source_location": "L119",
       "id": "page_handlesaveprofile",
-      "community": 6,
+      "community": 2,
       "norm_label": "handlesaveprofile()"
     },
     {
       "label": "handleSaveDefaults()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L200",
+      "source_location": "L189",
       "id": "page_handlesavedefaults",
-      "community": 6,
+      "community": 2,
       "norm_label": "handlesavedefaults()"
     },
     {
       "label": "handleChangePassword()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L214",
+      "source_location": "L209",
       "id": "page_handlechangepassword",
-      "community": 6,
+      "community": 2,
       "norm_label": "handlechangepassword()"
     },
     {
       "label": "handleLogout()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L268",
+      "source_location": "L263",
       "id": "page_handlelogout",
-      "community": 6,
+      "community": 2,
       "norm_label": "handlelogout()"
     },
     {
       "label": "handleDeleteAccount()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L279",
+      "source_location": "L274",
       "id": "page_handledeleteaccount",
-      "community": 6,
+      "community": 2,
       "norm_label": "handledeleteaccount()"
     },
     {
       "label": "toggleVibe()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L322",
+      "source_location": "L317",
       "id": "page_togglevibe",
-      "community": 6,
+      "community": 2,
       "norm_label": "togglevibe()"
+    },
+    {
+      "label": "switchTab()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
+      "source_location": "L331",
+      "id": "page_switchtab",
+      "community": 2,
+      "norm_label": "switchtab()"
     },
     {
       "label": "route.ts",
@@ -702,7 +621,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\discover\\page.tsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_app_discover_page_tsx",
-      "community": 15,
+      "community": 16,
       "norm_label": "page.tsx"
     },
     {
@@ -711,7 +630,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\discover\\page.tsx",
       "source_location": "L5",
       "id": "page_discoverpage",
-      "community": 15,
+      "community": 16,
       "norm_label": "discoverpage()"
     },
     {
@@ -720,7 +639,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\discover\\[slug]\\page.tsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_app_discover_slug_page_tsx",
-      "community": 11,
+      "community": 12,
       "norm_label": "page.tsx"
     },
     {
@@ -729,7 +648,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\discover\\[slug]\\page.tsx",
       "source_location": "L13",
       "id": "page_generatestaticparams",
-      "community": 11,
+      "community": 12,
       "norm_label": "generatestaticparams()"
     },
     {
@@ -738,7 +657,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\discover\\[slug]\\page.tsx",
       "source_location": "L19",
       "id": "page_discovertrippage",
-      "community": 11,
+      "community": 12,
       "norm_label": "discovertrippage()"
     },
     {
@@ -747,7 +666,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\itinerary\\page.jsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_app_itinerary_page_jsx",
-      "community": 16,
+      "community": 17,
       "norm_label": "page.jsx"
     },
     {
@@ -756,7 +675,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\itinerary\\page.jsx",
       "source_location": "L6",
       "id": "page_legacyitinerarypage",
-      "community": 16,
+      "community": 17,
       "norm_label": "legacyitinerarypage()"
     },
     {
@@ -765,7 +684,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "community": 2,
+      "community": 6,
       "norm_label": "page.tsx"
     },
     {
@@ -774,25 +693,25 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
       "source_location": "L15",
       "id": "page_normalizeguestclaims",
-      "community": 2,
+      "community": 6,
       "norm_label": "normalizeguestclaims()"
     },
     {
       "label": "readGuestTripClaims()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\page.jsx",
-      "source_location": "L10",
+      "source_location": "L12",
       "id": "page_readguesttripclaims",
-      "community": 2,
+      "community": 6,
       "norm_label": "readguesttripclaims()"
     },
     {
       "label": "writeGuestTripClaims()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\page.jsx",
-      "source_location": "L37",
+      "source_location": "L39",
       "id": "page_writeguesttripclaims",
-      "community": 2,
+      "community": 6,
       "norm_label": "writeguesttripclaims()"
     },
     {
@@ -801,62 +720,116 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
       "source_location": "L59",
       "id": "page_claimguesttripstouser",
-      "community": 2,
+      "community": 6,
       "norm_label": "claimguesttripstouser()"
     },
     {
-      "label": "GoogleIcon()",
+      "label": "LoginPage()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
       "source_location": "L117",
-      "id": "page_googleicon",
-      "community": 2,
-      "norm_label": "googleicon()"
+      "id": "page_loginpage",
+      "community": 6,
+      "norm_label": "loginpage()"
     },
     {
-      "label": "validateInputs()",
+      "label": "page.tsx",
       "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L195",
-      "id": "page_validateinputs",
-      "community": 2,
-      "norm_label": "validateinputs()"
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L1",
+      "id": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "community": 3,
+      "norm_label": "page.tsx"
     },
     {
-      "label": "handleSuccessLogin()",
+      "label": "applyLoveSwipe()",
       "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L228",
-      "id": "page_handlesuccesslogin",
-      "community": 2,
-      "norm_label": "handlesuccesslogin()"
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L314",
+      "id": "page_applyloveswipe",
+      "community": 3,
+      "norm_label": "applyloveswipe()"
     },
     {
-      "label": "handleGoogleContinue()",
+      "label": "resolvePersona()",
       "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L253",
-      "id": "page_handlegooglecontinue",
-      "community": 2,
-      "norm_label": "handlegooglecontinue()"
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L322",
+      "id": "page_resolvepersona",
+      "community": 3,
+      "norm_label": "resolvepersona()"
     },
     {
-      "label": "handleSubmit()",
+      "label": "derivePlannerVibes()",
       "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L290",
-      "id": "page_handlesubmit",
-      "community": 2,
-      "norm_label": "handlesubmit()"
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L368",
+      "id": "page_deriveplannervibes",
+      "community": 3,
+      "norm_label": "deriveplannervibes()"
     },
     {
-      "label": "handleSignOut()",
+      "label": "deriveBudgetHint()",
       "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L338",
-      "id": "page_handlesignout",
-      "community": 2,
-      "norm_label": "handlesignout()"
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L382",
+      "id": "page_derivebudgethint",
+      "community": 3,
+      "norm_label": "derivebudgethint()"
+    },
+    {
+      "label": "resolveImageStage()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L411",
+      "id": "page_resolveimagestage",
+      "community": 3,
+      "norm_label": "resolveimagestage()"
+    },
+    {
+      "label": "resolveImageSource()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L413",
+      "id": "page_resolveimagesource",
+      "community": 3,
+      "norm_label": "resolveimagesource()"
+    },
+    {
+      "label": "markImageError()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L420",
+      "id": "page_markimageerror",
+      "community": 3,
+      "norm_label": "markimageerror()"
+    },
+    {
+      "label": "applySwipeResult()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L443",
+      "id": "page_applyswiperesult",
+      "community": 3,
+      "norm_label": "applyswiperesult()"
+    },
+    {
+      "label": "triggerSwipe()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L464",
+      "id": "page_triggerswipe",
+      "community": 3,
+      "norm_label": "triggerswipe()"
+    },
+    {
+      "label": "goToPlannerWithPrefill()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L482",
+      "id": "page_gotoplannerwithprefill",
+      "community": 3,
+      "norm_label": "gotoplannerwithprefill()"
     },
     {
       "label": "page.jsx",
@@ -871,7 +844,7 @@
       "label": "addGuestTripClaim()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\plan\\page.jsx",
-      "source_location": "L33",
+      "source_location": "L25",
       "id": "page_addguesttripclaim",
       "community": 9,
       "norm_label": "addguesttripclaim()"
@@ -880,7 +853,7 @@
       "label": "PlanTripPage()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\plan\\page.jsx",
-      "source_location": "L80",
+      "source_location": "L72",
       "id": "page_plantrippage",
       "community": 9,
       "norm_label": "plantrippage()"
@@ -891,25 +864,25 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\page.jsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_app_trips_page_jsx",
-      "community": 2,
+      "community": 6,
       "norm_label": "page.jsx"
     },
     {
       "label": "claimGuestTripsForUser()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\page.jsx",
-      "source_location": "L51",
+      "source_location": "L53",
       "id": "page_claimguesttripsforuser",
-      "community": 2,
+      "community": 6,
       "norm_label": "claimguesttripsforuser()"
     },
     {
       "label": "TripsHubPage()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\page.jsx",
-      "source_location": "L107",
+      "source_location": "L109",
       "id": "page_tripshubpage",
-      "community": 2,
+      "community": 6,
       "norm_label": "tripshubpage()"
     },
     {
@@ -918,7 +891,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\[id]\\page.tsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_app_trips_id_page_tsx",
-      "community": 17,
+      "community": 18,
       "norm_label": "page.tsx"
     },
     {
@@ -927,7 +900,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\[id]\\page.tsx",
       "source_location": "L9",
       "id": "page_tripitinerarypage",
-      "community": 17,
+      "community": 18,
       "norm_label": "tripitinerarypage()"
     },
     {
@@ -936,16 +909,16 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ActivityCard.jsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_components_activitycard_jsx",
-      "community": 18,
+      "community": 19,
       "norm_label": "activitycard.jsx"
     },
     {
       "label": "ActivityCard()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ActivityCard.jsx",
-      "source_location": "L9",
+      "source_location": "L16",
       "id": "activitycard_activitycard",
-      "community": 18,
+      "community": 19,
       "norm_label": "activitycard()"
     },
     {
@@ -1006,34 +979,34 @@
       "label": "formatSingleDate()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
-      "source_location": "L20",
+      "source_location": "L29",
       "id": "itineraryexperience_formatsingledate",
       "community": 7,
       "norm_label": "formatsingledate()"
     },
     {
+      "label": "formatDayChipDate()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
+      "source_location": "L42",
+      "id": "itineraryexperience_formatdaychipdate",
+      "community": 7,
+      "norm_label": "formatdaychipdate()"
+    },
+    {
       "label": "formatDateRange()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
-      "source_location": "L33",
+      "source_location": "L54",
       "id": "itineraryexperience_formatdaterange",
       "community": 7,
       "norm_label": "formatdaterange()"
     },
     {
-      "label": "buildPackingList()",
-      "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
-      "source_location": "L54",
-      "id": "itineraryexperience_buildpackinglist",
-      "community": 7,
-      "norm_label": "buildpackinglist()"
-    },
-    {
       "label": "getFallbackImage()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
-      "source_location": "L63",
+      "source_location": "L75",
       "id": "itineraryexperience_getfallbackimage",
       "community": 7,
       "norm_label": "getfallbackimage()"
@@ -1042,7 +1015,7 @@
       "label": "safeArray()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
-      "source_location": "L86",
+      "source_location": "L81",
       "id": "itineraryexperience_safearray",
       "community": 7,
       "norm_label": "safearray()"
@@ -1051,7 +1024,7 @@
       "label": "ItineraryExperience()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
-      "source_location": "L91",
+      "source_location": "L86",
       "id": "itineraryexperience_itineraryexperience",
       "community": 7,
       "norm_label": "itineraryexperience()"
@@ -1062,7 +1035,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\Navbar.tsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_components_navbar_tsx",
-      "community": 19,
+      "community": 20,
       "norm_label": "navbar.tsx"
     },
     {
@@ -1071,7 +1044,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\Navbar.tsx",
       "source_location": "L22",
       "id": "navbar_syncauthstate",
-      "community": 19,
+      "community": 20,
       "norm_label": "syncauthstate()"
     },
     {
@@ -1080,7 +1053,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\TripCard.jsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_components_tripcard_jsx",
-      "community": 20,
+      "community": 21,
       "norm_label": "tripcard.jsx"
     },
     {
@@ -1089,7 +1062,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\TripCard.jsx",
       "source_location": "L4",
       "id": "tripcard_tripcard",
-      "community": 20,
+      "community": 21,
       "norm_label": "tripcard()"
     },
     {
@@ -1098,35 +1071,80 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\UtilityDrawer.jsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_components_utilitydrawer_jsx",
-      "community": 21,
+      "community": 22,
       "norm_label": "utilitydrawer.jsx"
     },
     {
       "label": "UtilityDrawer()",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\UtilityDrawer.jsx",
-      "source_location": "L6",
+      "source_location": "L5",
       "id": "utilitydrawer_utilitydrawer",
-      "community": 21,
+      "community": 22,
       "norm_label": "utilitydrawer()"
     },
     {
-      "label": "Button.jsx",
+      "label": "Button.tsx",
       "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\Button.jsx",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\Button.tsx",
       "source_location": "L1",
-      "id": "c_users_pujar_documents_tripsense_wad_components_ui_button_jsx",
-      "community": 22,
-      "norm_label": "button.jsx"
+      "id": "c_users_pujar_documents_tripsense_wad_components_ui_button_tsx",
+      "community": 38,
+      "norm_label": "button.tsx"
     },
     {
-      "label": "Button()",
+      "label": "cobe-globe.tsx",
       "file_type": "code",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\Button.jsx",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\cobe-globe.tsx",
       "source_location": "L1",
-      "id": "button_button",
-      "community": 22,
-      "norm_label": "button()"
+      "id": "c_users_pujar_documents_tripsense_wad_components_ui_cobe_globe_tsx",
+      "community": 23,
+      "norm_label": "cobe-globe.tsx"
+    },
+    {
+      "label": "Globe()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\cobe-globe.tsx",
+      "source_location": "L40",
+      "id": "cobe_globe_globe",
+      "community": 23,
+      "norm_label": "globe()"
+    },
+    {
+      "label": "demo.tsx",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\demo.tsx",
+      "source_location": "L1",
+      "id": "c_users_pujar_documents_tripsense_wad_components_ui_demo_tsx",
+      "community": 24,
+      "norm_label": "demo.tsx"
+    },
+    {
+      "label": "DemoAiAssistatBasic()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\demo.tsx",
+      "source_location": "L11",
+      "id": "demo_demoaiassistatbasic",
+      "community": 24,
+      "norm_label": "demoaiassistatbasic()"
+    },
+    {
+      "label": "floating-action-menu.tsx",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\floating-action-menu.tsx",
+      "source_location": "L1",
+      "id": "c_users_pujar_documents_tripsense_wad_components_ui_floating_action_menu_tsx",
+      "community": 25,
+      "norm_label": "floating-action-menu.tsx"
+    },
+    {
+      "label": "toggleMenu()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\floating-action-menu.tsx",
+      "source_location": "L25",
+      "id": "floating_action_menu_togglemenu",
+      "community": 25,
+      "norm_label": "togglemenu()"
     },
     {
       "label": "FormInput.jsx",
@@ -1134,7 +1152,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\FormInput.jsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_components_ui_forminput_jsx",
-      "community": 13,
+      "community": 14,
       "norm_label": "forminput.jsx"
     },
     {
@@ -1143,7 +1161,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\FormInput.jsx",
       "source_location": "L1",
       "id": "forminput_forminput",
-      "community": 13,
+      "community": 14,
       "norm_label": "forminput()"
     },
     {
@@ -1152,8 +1170,44 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\FormInput.jsx",
       "source_location": "L13",
       "id": "forminput_formtextarea",
-      "community": 13,
+      "community": 14,
       "norm_label": "formtextarea()"
+    },
+    {
+      "label": "globe-demo.tsx",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\globe-demo.tsx",
+      "source_location": "L1",
+      "id": "c_users_pujar_documents_tripsense_wad_components_ui_globe_demo_tsx",
+      "community": 26,
+      "norm_label": "globe-demo.tsx"
+    },
+    {
+      "label": "GlobeDemo()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\globe-demo.tsx",
+      "source_location": "L32",
+      "id": "globe_demo_globedemo",
+      "community": 26,
+      "norm_label": "globedemo()"
+    },
+    {
+      "label": "motion-footer.tsx",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\motion-footer.tsx",
+      "source_location": "L1",
+      "id": "c_users_pujar_documents_tripsense_wad_components_ui_motion_footer_tsx",
+      "community": 27,
+      "norm_label": "motion-footer.tsx"
+    },
+    {
+      "label": "scrollToTop()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\motion-footer.tsx",
+      "source_location": "L262",
+      "id": "motion_footer_scrolltotop",
+      "community": 27,
+      "norm_label": "scrolltotop()"
     },
     {
       "label": "OptionChip.jsx",
@@ -1161,7 +1215,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\OptionChip.jsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_components_ui_optionchip_jsx",
-      "community": 23,
+      "community": 28,
       "norm_label": "optionchip.jsx"
     },
     {
@@ -1170,7 +1224,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\OptionChip.jsx",
       "source_location": "L1",
       "id": "optionchip_optionchip",
-      "community": 23,
+      "community": 28,
       "norm_label": "optionchip()"
     },
     {
@@ -1179,7 +1233,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\ProgressBar.jsx",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_components_ui_progressbar_jsx",
-      "community": 24,
+      "community": 29,
       "norm_label": "progressbar.jsx"
     },
     {
@@ -1188,8 +1242,71 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\ProgressBar.jsx",
       "source_location": "L1",
       "id": "progressbar_progressbar",
-      "community": 24,
+      "community": 29,
       "norm_label": "progressbar()"
+    },
+    {
+      "label": "sparkles.tsx",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\sparkles.tsx",
+      "source_location": "L1",
+      "id": "c_users_pujar_documents_tripsense_wad_components_ui_sparkles_tsx",
+      "community": 30,
+      "norm_label": "sparkles.tsx"
+    },
+    {
+      "label": "SparklesCore()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\sparkles.tsx",
+      "source_location": "L23",
+      "id": "sparkles_sparklescore",
+      "community": 30,
+      "norm_label": "sparklescore()"
+    },
+    {
+      "label": "travel-connect-signin.tsx",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\travel-connect-signin.tsx",
+      "source_location": "L1",
+      "id": "c_users_pujar_documents_tripsense_wad_components_ui_travel_connect_signin_tsx",
+      "community": 11,
+      "norm_label": "travel-connect-signin.tsx"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\travel-connect-signin.tsx",
+      "source_location": "L8",
+      "id": "travel_connect_signin_cn",
+      "community": 11,
+      "norm_label": "cn()"
+    },
+    {
+      "label": "GoogleIcon()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\travel-connect-signin.tsx",
+      "source_location": "L83",
+      "id": "travel_connect_signin_googleicon",
+      "community": 11,
+      "norm_label": "googleicon()"
+    },
+    {
+      "label": "generateDots()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\travel-connect-signin.tsx",
+      "source_location": "L131",
+      "id": "travel_connect_signin_generatedots",
+      "community": 11,
+      "norm_label": "generatedots()"
+    },
+    {
+      "label": "DotMap()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\travel-connect-signin.tsx",
+      "source_location": "L166",
+      "id": "travel_connect_signin_dotmap",
+      "community": 11,
+      "norm_label": "dotmap()"
     },
     {
       "label": "TripPlannerContext.jsx",
@@ -1224,7 +1341,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\data\\itineraryData.js",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_data_itinerarydata_js",
-      "community": 30,
+      "community": 39,
       "norm_label": "itinerarydata.js"
     },
     {
@@ -1233,7 +1350,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\db\\index.ts",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_db_index_ts",
-      "community": 31,
+      "community": 40,
       "norm_label": "index.ts"
     },
     {
@@ -1242,7 +1359,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\db\\schema.ts",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_db_schema_ts",
-      "community": 32,
+      "community": 41,
       "norm_label": "schema.ts"
     },
     {
@@ -1251,7 +1368,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\discoverTrips.ts",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_lib_discovertrips_ts",
-      "community": 11,
+      "community": 12,
       "norm_label": "discovertrips.ts"
     },
     {
@@ -1260,7 +1377,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\discoverTrips.ts",
       "source_location": "L1432",
       "id": "discovertrips_getdiscovertripbyslug",
-      "community": 11,
+      "community": 12,
       "norm_label": "getdiscovertripbyslug()"
     },
     {
@@ -1525,12 +1642,48 @@
       "norm_label": "formatcurrencyamount()"
     },
     {
+      "label": "trip-planner-options.ts",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-planner-options.ts",
+      "source_location": "L1",
+      "id": "c_users_pujar_documents_tripsense_wad_lib_trip_planner_options_ts",
+      "community": 2,
+      "norm_label": "trip-planner-options.ts"
+    },
+    {
+      "label": "normalizePlannerVibes()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-planner-options.ts",
+      "source_location": "L37",
+      "id": "trip_planner_options_normalizeplannervibes",
+      "community": 2,
+      "norm_label": "normalizeplannervibes()"
+    },
+    {
+      "label": "getTodayIsoDate()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-planner-options.ts",
+      "source_location": "L48",
+      "id": "trip_planner_options_gettodayisodate",
+      "community": 2,
+      "norm_label": "gettodayisodate()"
+    },
+    {
+      "label": "isPastPlannerDate()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-planner-options.ts",
+      "source_location": "L54",
+      "id": "trip_planner_options_ispastplannerdate",
+      "community": 2,
+      "norm_label": "ispastplannerdate()"
+    },
+    {
       "label": "trip-pricing.ts",
       "file_type": "code",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-pricing.ts",
       "source_location": "L1",
       "id": "c_users_pujar_documents_tripsense_wad_lib_trip_pricing_ts",
-      "community": 12,
+      "community": 13,
       "norm_label": "trip-pricing.ts"
     },
     {
@@ -1539,7 +1692,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-pricing.ts",
       "source_location": "L3",
       "id": "trip_pricing_normalizeestimatedcostfordb",
-      "community": 12,
+      "community": 13,
       "norm_label": "normalizeestimatedcostfordb()"
     },
     {
@@ -1548,7 +1701,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-pricing.ts",
       "source_location": "L20",
       "id": "trip_pricing_normalizeestimatedcurrency",
-      "community": 12,
+      "community": 13,
       "norm_label": "normalizeestimatedcurrency()"
     },
     {
@@ -1557,7 +1710,7 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-pricing.ts",
       "source_location": "L36",
       "id": "trip_pricing_normalizeestimatenote",
-      "community": 12,
+      "community": 13,
       "norm_label": "normalizeestimatenote()"
     },
     {
@@ -1566,8 +1719,26 @@
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-pricing.ts",
       "source_location": "L41",
       "id": "trip_pricing_formatstoredprice",
-      "community": 12,
+      "community": 13,
       "norm_label": "formatstoredprice()"
+    },
+    {
+      "label": "utils.ts",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\utils.ts",
+      "source_location": "L1",
+      "id": "c_users_pujar_documents_tripsense_wad_lib_utils_ts",
+      "community": 31,
+      "norm_label": "utils.ts"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\utils.ts",
+      "source_location": "L1",
+      "id": "utils_cn",
+      "community": 31,
+      "norm_label": "cn()"
     }
   ],
   "links": [
@@ -1575,7 +1746,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\layout.js",
-      "source_location": "L24",
+      "source_location": "L27",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_layout_js",
       "_tgt": "layout_rootlayout",
@@ -1586,212 +1757,8 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L314",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "_tgt": "page_applyloveswipe",
-      "source": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "target": "page_applyloveswipe",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L322",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "_tgt": "page_resolvepersona",
-      "source": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "target": "page_resolvepersona",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L368",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "_tgt": "page_deriveplannervibes",
-      "source": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "target": "page_deriveplannervibes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L382",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "_tgt": "page_derivebudgethint",
-      "source": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "target": "page_derivebudgethint",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L411",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "_tgt": "page_resolveimagestage",
-      "source": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "target": "page_resolveimagestage",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L413",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "_tgt": "page_resolveimagesource",
-      "source": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "target": "page_resolveimagesource",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L420",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "_tgt": "page_markimageerror",
-      "source": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "target": "page_markimageerror",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L443",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "_tgt": "page_applyswiperesult",
-      "source": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "target": "page_applyswiperesult",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L464",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "_tgt": "page_triggerswipe",
-      "source": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "target": "page_triggerswipe",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L482",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "_tgt": "page_gotoplannerwithprefill",
-      "source": "c_users_pujar_documents_tripsense_wad_app_page_tsx",
-      "target": "page_gotoplannerwithprefill",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L445",
-      "weight": 1.0,
-      "_src": "page_applyswiperesult",
-      "_tgt": "page_applyloveswipe",
-      "source": "page_applyloveswipe",
-      "target": "page_applyswiperesult",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L377",
-      "weight": 1.0,
-      "_src": "page_deriveplannervibes",
-      "_tgt": "page_resolvepersona",
-      "source": "page_resolvepersona",
-      "target": "page_deriveplannervibes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L453",
-      "weight": 1.0,
-      "_src": "page_applyswiperesult",
-      "_tgt": "page_resolvepersona",
-      "source": "page_resolvepersona",
-      "target": "page_applyswiperesult",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L455",
-      "weight": 1.0,
-      "_src": "page_applyswiperesult",
-      "_tgt": "page_deriveplannervibes",
-      "source": "page_deriveplannervibes",
-      "target": "page_applyswiperesult",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L456",
-      "weight": 1.0,
-      "_src": "page_applyswiperesult",
-      "_tgt": "page_derivebudgethint",
-      "source": "page_derivebudgethint",
-      "target": "page_applyswiperesult",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L414",
-      "weight": 1.0,
-      "_src": "page_resolveimagesource",
-      "_tgt": "page_resolveimagestage",
-      "source": "page_resolveimagestage",
-      "target": "page_resolveimagesource",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\page.tsx",
-      "source_location": "L478",
-      "weight": 1.0,
-      "_src": "page_triggerswipe",
-      "_tgt": "page_applyswiperesult",
-      "source": "page_applyswiperesult",
-      "target": "page_triggerswipe",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L37",
+      "source_location": "L28",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_account_page_tsx",
       "_tgt": "page_isvalidemail",
@@ -1803,7 +1770,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L130",
+      "source_location": "L119",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_account_page_tsx",
       "_tgt": "page_handlesaveprofile",
@@ -1815,7 +1782,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L200",
+      "source_location": "L189",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_account_page_tsx",
       "_tgt": "page_handlesavedefaults",
@@ -1827,7 +1794,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L214",
+      "source_location": "L209",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_account_page_tsx",
       "_tgt": "page_handlechangepassword",
@@ -1839,7 +1806,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L268",
+      "source_location": "L263",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_account_page_tsx",
       "_tgt": "page_handlelogout",
@@ -1851,7 +1818,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L279",
+      "source_location": "L274",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_account_page_tsx",
       "_tgt": "page_handledeleteaccount",
@@ -1863,7 +1830,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L322",
+      "source_location": "L317",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_account_page_tsx",
       "_tgt": "page_togglevibe",
@@ -1872,16 +1839,40 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
+      "source_location": "L331",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_app_account_page_tsx",
+      "_tgt": "page_switchtab",
+      "source": "c_users_pujar_documents_tripsense_wad_app_account_page_tsx",
+      "target": "page_switchtab",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
-      "source_location": "L145",
+      "source_location": "L134",
       "weight": 1.0,
       "_src": "page_handlesaveprofile",
       "_tgt": "page_isvalidemail",
       "source": "page_isvalidemail",
       "target": "page_handlesaveprofile",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\account\\page.tsx",
+      "source_location": "L200",
+      "weight": 1.0,
+      "_src": "page_handlesavedefaults",
+      "_tgt": "trip_planner_options_normalizeplannervibes",
+      "source": "page_handlesavedefaults",
+      "target": "trip_planner_options_normalizeplannervibes"
     },
     {
       "relation": "contains",
@@ -3450,69 +3441,9 @@
       "source_location": "L117",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "_tgt": "page_googleicon",
+      "_tgt": "page_loginpage",
       "source": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "target": "page_googleicon",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L195",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "_tgt": "page_validateinputs",
-      "source": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "target": "page_validateinputs",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L228",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "_tgt": "page_handlesuccesslogin",
-      "source": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "target": "page_handlesuccesslogin",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L253",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "_tgt": "page_handlegooglecontinue",
-      "source": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "target": "page_handlegooglecontinue",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L290",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "_tgt": "page_handlesubmit",
-      "source": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "target": "page_handlesubmit",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L338",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "_tgt": "page_handlesignout",
-      "source": "c_users_pujar_documents_tripsense_wad_app_login_page_tsx",
-      "target": "page_handlesignout",
+      "target": "page_loginpage",
       "confidence_score": 1.0
     },
     {
@@ -3555,7 +3486,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\page.jsx",
-      "source_location": "L10",
+      "source_location": "L12",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_trips_page_jsx",
       "_tgt": "page_readguesttripclaims",
@@ -3567,7 +3498,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\page.jsx",
-      "source_location": "L54",
+      "source_location": "L56",
       "weight": 1.0,
       "_src": "page_claimguesttripsforuser",
       "_tgt": "page_readguesttripclaims",
@@ -3591,7 +3522,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\page.jsx",
-      "source_location": "L37",
+      "source_location": "L39",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_trips_page_jsx",
       "_tgt": "page_writeguesttripclaims",
@@ -3603,7 +3534,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\page.jsx",
-      "source_location": "L101",
+      "source_location": "L103",
       "weight": 1.0,
       "_src": "page_claimguesttripsforuser",
       "_tgt": "page_writeguesttripclaims",
@@ -3612,58 +3543,214 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "calls",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L249",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L314",
       "weight": 1.0,
-      "_src": "page_handlesuccesslogin",
-      "_tgt": "page_claimguesttripstouser",
-      "source": "page_claimguesttripstouser",
-      "target": "page_handlesuccesslogin",
+      "_src": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "_tgt": "page_applyloveswipe",
+      "source": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "target": "page_applyloveswipe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L322",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "_tgt": "page_resolvepersona",
+      "source": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "target": "page_resolvepersona",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L368",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "_tgt": "page_deriveplannervibes",
+      "source": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "target": "page_deriveplannervibes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L382",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "_tgt": "page_derivebudgethint",
+      "source": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "target": "page_derivebudgethint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L411",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "_tgt": "page_resolveimagestage",
+      "source": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "target": "page_resolveimagestage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L413",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "_tgt": "page_resolveimagesource",
+      "source": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "target": "page_resolveimagesource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L420",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "_tgt": "page_markimageerror",
+      "source": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "target": "page_markimageerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L443",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "_tgt": "page_applyswiperesult",
+      "source": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "target": "page_applyswiperesult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L464",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "_tgt": "page_triggerswipe",
+      "source": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "target": "page_triggerswipe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L482",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "_tgt": "page_gotoplannerwithprefill",
+      "source": "c_users_pujar_documents_tripsense_wad_app_persona_page_tsx",
+      "target": "page_gotoplannerwithprefill",
       "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L293",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L445",
       "weight": 1.0,
-      "_src": "page_handlesubmit",
-      "_tgt": "page_validateinputs",
-      "source": "page_validateinputs",
-      "target": "page_handlesubmit",
+      "_src": "page_applyswiperesult",
+      "_tgt": "page_applyloveswipe",
+      "source": "page_applyloveswipe",
+      "target": "page_applyswiperesult",
       "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L278",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L377",
       "weight": 1.0,
-      "_src": "page_handlegooglecontinue",
-      "_tgt": "page_handlesuccesslogin",
-      "source": "page_handlesuccesslogin",
-      "target": "page_handlegooglecontinue",
+      "_src": "page_deriveplannervibes",
+      "_tgt": "page_resolvepersona",
+      "source": "page_resolvepersona",
+      "target": "page_deriveplannervibes",
       "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\login\\page.tsx",
-      "source_location": "L326",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L453",
       "weight": 1.0,
-      "_src": "page_handlesubmit",
-      "_tgt": "page_handlesuccesslogin",
-      "source": "page_handlesuccesslogin",
-      "target": "page_handlesubmit",
+      "_src": "page_applyswiperesult",
+      "_tgt": "page_resolvepersona",
+      "source": "page_resolvepersona",
+      "target": "page_applyswiperesult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L455",
+      "weight": 1.0,
+      "_src": "page_applyswiperesult",
+      "_tgt": "page_deriveplannervibes",
+      "source": "page_deriveplannervibes",
+      "target": "page_applyswiperesult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L456",
+      "weight": 1.0,
+      "_src": "page_applyswiperesult",
+      "_tgt": "page_derivebudgethint",
+      "source": "page_derivebudgethint",
+      "target": "page_applyswiperesult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L414",
+      "weight": 1.0,
+      "_src": "page_resolveimagesource",
+      "_tgt": "page_resolveimagestage",
+      "source": "page_resolveimagestage",
+      "target": "page_resolveimagesource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\persona\\page.tsx",
+      "source_location": "L478",
+      "weight": 1.0,
+      "_src": "page_triggerswipe",
+      "_tgt": "page_applyswiperesult",
+      "source": "page_applyswiperesult",
+      "target": "page_triggerswipe",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\plan\\page.jsx",
-      "source_location": "L33",
+      "source_location": "L25",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_plan_page_jsx",
       "_tgt": "page_addguesttripclaim",
@@ -3675,7 +3762,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\plan\\page.jsx",
-      "source_location": "L80",
+      "source_location": "L72",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_plan_page_jsx",
       "_tgt": "page_plantrippage",
@@ -3699,7 +3786,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\page.jsx",
-      "source_location": "L51",
+      "source_location": "L53",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_trips_page_jsx",
       "_tgt": "page_claimguesttripsforuser",
@@ -3711,7 +3798,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\app\\trips\\page.jsx",
-      "source_location": "L107",
+      "source_location": "L109",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_app_trips_page_jsx",
       "_tgt": "page_tripshubpage",
@@ -3735,7 +3822,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ActivityCard.jsx",
-      "source_location": "L9",
+      "source_location": "L16",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_components_activitycard_jsx",
       "_tgt": "activitycard_activitycard",
@@ -3831,7 +3918,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
-      "source_location": "L20",
+      "source_location": "L29",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_components_itineraryexperience_jsx",
       "_tgt": "itineraryexperience_formatsingledate",
@@ -3843,7 +3930,19 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
-      "source_location": "L33",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_components_itineraryexperience_jsx",
+      "_tgt": "itineraryexperience_formatdaychipdate",
+      "source": "c_users_pujar_documents_tripsense_wad_components_itineraryexperience_jsx",
+      "target": "itineraryexperience_formatdaychipdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
+      "source_location": "L54",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_components_itineraryexperience_jsx",
       "_tgt": "itineraryexperience_formatdaterange",
@@ -3855,19 +3954,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
-      "source_location": "L54",
-      "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_components_itineraryexperience_jsx",
-      "_tgt": "itineraryexperience_buildpackinglist",
-      "source": "c_users_pujar_documents_tripsense_wad_components_itineraryexperience_jsx",
-      "target": "itineraryexperience_buildpackinglist",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
-      "source_location": "L63",
+      "source_location": "L75",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_components_itineraryexperience_jsx",
       "_tgt": "itineraryexperience_getfallbackimage",
@@ -3879,7 +3966,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
-      "source_location": "L86",
+      "source_location": "L81",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_components_itineraryexperience_jsx",
       "_tgt": "itineraryexperience_safearray",
@@ -3891,7 +3978,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ItineraryExperience.jsx",
-      "source_location": "L91",
+      "source_location": "L86",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_components_itineraryexperience_jsx",
       "_tgt": "itineraryexperience_itineraryexperience",
@@ -3939,7 +4026,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\UtilityDrawer.jsx",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0,
       "_src": "c_users_pujar_documents_tripsense_wad_components_utilitydrawer_jsx",
       "_tgt": "utilitydrawer_utilitydrawer",
@@ -3950,13 +4037,37 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\Button.jsx",
-      "source_location": "L1",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\cobe-globe.tsx",
+      "source_location": "L40",
       "weight": 1.0,
-      "_src": "c_users_pujar_documents_tripsense_wad_components_ui_button_jsx",
-      "_tgt": "button_button",
-      "source": "c_users_pujar_documents_tripsense_wad_components_ui_button_jsx",
-      "target": "button_button",
+      "_src": "c_users_pujar_documents_tripsense_wad_components_ui_cobe_globe_tsx",
+      "_tgt": "cobe_globe_globe",
+      "source": "c_users_pujar_documents_tripsense_wad_components_ui_cobe_globe_tsx",
+      "target": "cobe_globe_globe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\demo.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_components_ui_demo_tsx",
+      "_tgt": "demo_demoaiassistatbasic",
+      "source": "c_users_pujar_documents_tripsense_wad_components_ui_demo_tsx",
+      "target": "demo_demoaiassistatbasic",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\floating-action-menu.tsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_components_ui_floating_action_menu_tsx",
+      "_tgt": "floating_action_menu_togglemenu",
+      "source": "c_users_pujar_documents_tripsense_wad_components_ui_floating_action_menu_tsx",
+      "target": "floating_action_menu_togglemenu",
       "confidence_score": 1.0
     },
     {
@@ -3986,6 +4097,30 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\globe-demo.tsx",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_components_ui_globe_demo_tsx",
+      "_tgt": "globe_demo_globedemo",
+      "source": "c_users_pujar_documents_tripsense_wad_components_ui_globe_demo_tsx",
+      "target": "globe_demo_globedemo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\motion-footer.tsx",
+      "source_location": "L262",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_components_ui_motion_footer_tsx",
+      "_tgt": "motion_footer_scrolltotop",
+      "source": "c_users_pujar_documents_tripsense_wad_components_ui_motion_footer_tsx",
+      "target": "motion_footer_scrolltotop",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\OptionChip.jsx",
       "source_location": "L1",
       "weight": 1.0,
@@ -4005,6 +4140,66 @@
       "_tgt": "progressbar_progressbar",
       "source": "c_users_pujar_documents_tripsense_wad_components_ui_progressbar_jsx",
       "target": "progressbar_progressbar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\sparkles.tsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_components_ui_sparkles_tsx",
+      "_tgt": "sparkles_sparklescore",
+      "source": "c_users_pujar_documents_tripsense_wad_components_ui_sparkles_tsx",
+      "target": "sparkles_sparklescore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\travel-connect-signin.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_components_ui_travel_connect_signin_tsx",
+      "_tgt": "travel_connect_signin_cn",
+      "source": "c_users_pujar_documents_tripsense_wad_components_ui_travel_connect_signin_tsx",
+      "target": "travel_connect_signin_cn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\travel-connect-signin.tsx",
+      "source_location": "L83",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_components_ui_travel_connect_signin_tsx",
+      "_tgt": "travel_connect_signin_googleicon",
+      "source": "c_users_pujar_documents_tripsense_wad_components_ui_travel_connect_signin_tsx",
+      "target": "travel_connect_signin_googleicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\travel-connect-signin.tsx",
+      "source_location": "L131",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_components_ui_travel_connect_signin_tsx",
+      "_tgt": "travel_connect_signin_generatedots",
+      "source": "c_users_pujar_documents_tripsense_wad_components_ui_travel_connect_signin_tsx",
+      "target": "travel_connect_signin_generatedots",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\components\\ui\\travel-connect-signin.tsx",
+      "source_location": "L166",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_components_ui_travel_connect_signin_tsx",
+      "_tgt": "travel_connect_signin_dotmap",
+      "source": "c_users_pujar_documents_tripsense_wad_components_ui_travel_connect_signin_tsx",
+      "target": "travel_connect_signin_dotmap",
       "confidence_score": 1.0
     },
     {
@@ -4646,6 +4841,54 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-planner-options.ts",
+      "source_location": "L37",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_lib_trip_planner_options_ts",
+      "_tgt": "trip_planner_options_normalizeplannervibes",
+      "source": "c_users_pujar_documents_tripsense_wad_lib_trip_planner_options_ts",
+      "target": "trip_planner_options_normalizeplannervibes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-planner-options.ts",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_lib_trip_planner_options_ts",
+      "_tgt": "trip_planner_options_gettodayisodate",
+      "source": "c_users_pujar_documents_tripsense_wad_lib_trip_planner_options_ts",
+      "target": "trip_planner_options_gettodayisodate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-planner-options.ts",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_lib_trip_planner_options_ts",
+      "_tgt": "trip_planner_options_ispastplannerdate",
+      "source": "c_users_pujar_documents_tripsense_wad_lib_trip_planner_options_ts",
+      "target": "trip_planner_options_ispastplannerdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-planner-options.ts",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_src": "trip_planner_options_ispastplannerdate",
+      "_tgt": "trip_planner_options_gettodayisodate",
+      "source": "trip_planner_options_gettodayisodate",
+      "target": "trip_planner_options_ispastplannerdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\trip-pricing.ts",
       "source_location": "L3",
       "weight": 1.0,
@@ -4701,6 +4944,18 @@
       "_tgt": "trip_pricing_normalizeestimatedcurrency",
       "source": "trip_pricing_normalizeestimatedcurrency",
       "target": "trip_pricing_formatstoredprice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\pujar\\Documents\\TripSense(WAD)\\lib\\utils.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "c_users_pujar_documents_tripsense_wad_lib_utils_ts",
+      "_tgt": "utils_cn",
+      "source": "c_users_pujar_documents_tripsense_wad_lib_utils_ts",
+      "target": "utils_cn",
       "confidence_score": 1.0
     }
   ],

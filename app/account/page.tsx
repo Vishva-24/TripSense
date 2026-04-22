@@ -10,6 +10,12 @@ import {
   User
 } from "lucide-react";
 import FloatingActionMenu from "@/components/ui/floating-action-menu";
+import {
+  budgetOptions,
+  normalizePlannerVibes,
+  travelerOptions,
+  vibeOptions
+} from "@/lib/trip-planner-options";
 
 type AccountTab = "profile" | "defaults" | "security";
 
@@ -17,22 +23,6 @@ const tabs: Array<{ key: AccountTab; label: string }> = [
   { key: "profile", label: "Profile" },
   { key: "defaults", label: "Travel Defaults" },
   { key: "security", label: "Security" }
-];
-
-const budgetOptions = ["Shoestring", "Standard", "Luxury"];
-const travelerOptions = ["Solo", "Couple", "Family", "Friends"];
-const vibeOptions = [
-  "Chill",
-  "Adventure",
-  "Culture",
-  "Party",
-  "Food-focused",
-  "Urban",
-  "Foodie",
-  "Relaxation",
-  "Nature",
-  "History",
-  "Luxury"
 ];
 
 function isValidEmail(value: string) {
@@ -101,6 +91,7 @@ export default function AccountPage() {
           travelGroup?: string;
           vibe?: string[];
         };
+        const normalizedVibes = normalizePlannerVibes(parsed.vibe);
 
         setDefaults({
           budgetTier:
@@ -111,10 +102,7 @@ export default function AccountPage() {
             parsed.travelGroup && travelerOptions.includes(parsed.travelGroup)
               ? parsed.travelGroup
               : "Solo",
-          vibe:
-            Array.isArray(parsed.vibe) && parsed.vibe.length > 0
-              ? parsed.vibe
-              : ["Chill"]
+          vibe: normalizedVibes.length > 0 ? normalizedVibes : ["Chill"]
         });
       } catch {
         setDefaults({
@@ -205,7 +193,13 @@ export default function AccountPage() {
       setErrorMessage("");
       setSuccessMessage("");
       setIsSavingDefaults(true);
-      window.localStorage.setItem("tripsense_travel_defaults", JSON.stringify(defaults));
+      window.localStorage.setItem(
+        "tripsense_travel_defaults",
+        JSON.stringify({
+          ...defaults,
+          vibe: normalizePlannerVibes(defaults.vibe)
+        })
+      );
       setSuccessMessage("Travel defaults saved.");
     } finally {
       setIsSavingDefaults(false);

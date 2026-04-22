@@ -93,3 +93,12 @@
 .card-surface {
   @apply rounded-3xl bg-app-panel shadow-card border border-app-border;
 }
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
