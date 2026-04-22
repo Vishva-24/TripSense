@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Compass, PlusCircle, Search, UserCircle2 } from "lucide-react";
 import Link from "next/link";
-import TripCard from "@/components/TripCard";
 import FloatingActionMenu from "@/components/ui/floating-action-menu";
+import { TrailCard } from "@/components/ui/trail-card";
+import { Button } from "@/components/ui/button";
 
 const GUEST_TRIP_CLAIMS_KEY = "tripsense_guest_trip_claims";
 
@@ -104,6 +105,18 @@ async function claimGuestTripsForUser(userEmail) {
   } catch {
     // Silent fallback for offline/network issues.
   }
+}
+
+function getTripCardSummary(trip) {
+  const title = String(trip?.title || "").trim();
+  const [destinationPart, durationPart] = title.split(" - ");
+
+  return {
+    destination: destinationPart || title || "Saved Trip",
+    duration: durationPart || "Saved",
+    status: String(trip?.status || "Saved"),
+    dates: String(trip?.dates || "Dates pending")
+  };
 }
 
 export default function TripsHubPage() {
@@ -294,33 +307,104 @@ export default function TripsHubPage() {
         {dbTrips.map((trip) => {
           const dbTripId = Number(trip.tripId ?? trip.id);
           const canOpen = Number.isInteger(dbTripId) && dbTripId > 0;
+          const summary = getTripCardSummary(trip);
 
           return (
-            <TripCard
+            <TrailCard
               key={trip.id}
-              trip={
-                canOpen
-                  ? {
-                      ...trip,
-                      openHref: trip.openHref || `/trips/${dbTripId}`
-                    }
-                  : trip
-              }
-              deleting={deletingTripId === String(dbTripId)}
-              onOpen={() => {
-                if (canOpen && typeof window !== "undefined") {
-                  window.localStorage.setItem(
-                    "tripsense_last_trip_id",
-                    String(dbTripId)
-                  );
-                }
-              }}
-              onDelete={
+              className="max-w-none rounded-[28px] border border-white/60 bg-white/75 shadow-sm backdrop-blur-xl"
+              imageUrl={trip.image || `https://picsum.photos/seed/${encodeURIComponent(summary.destination)}/900/600`}
+              title={summary.destination}
+              location={summary.dates}
+              difficulty={summary.status}
+              creators="Saved itinerary ready to reopen or manage"
+              stats={[
+                { label: "Length", value: summary.duration },
+                { label: "Status", value: summary.status },
+                { label: "Access", value: canOpen ? "Open" : "Unavailable" }
+              ]}
+              actionLabel="Open trip"
+              onDirectionsClick={
                 canOpen
                   ? () => {
-                      void handleDeleteTrip(trip);
+                      if (typeof window !== "undefined") {
+                        window.localStorage.setItem(
+                          "tripsense_last_trip_id",
+                          String(dbTripId)
+                        );
+                      }
+                      router.push(trip.openHref || `/trips/${dbTripId}`);
                     }
                   : undefined
+              }
+              onClick={
+                canOpen
+                  ? () => {
+                      if (typeof window !== "undefined") {
+                        window.localStorage.setItem(
+                          "tripsense_last_trip_id",
+                          String(dbTripId)
+                        );
+                      }
+                      router.push(trip.openHref || `/trips/${dbTripId}`);
+                    }
+                  : undefined
+              }
+              role={canOpen ? "button" : undefined}
+              tabIndex={canOpen ? 0 : undefined}
+              onKeyDown={
+                canOpen
+                  ? (event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        if (typeof window !== "undefined") {
+                          window.localStorage.setItem(
+                            "tripsense_last_trip_id",
+                            String(dbTripId)
+                          );
+                        }
+                        router.push(trip.openHref || `/trips/${dbTripId}`);
+                      }
+                    }
+                  : undefined
+              }
+              footerActions={
+                canOpen ? (
+                  <>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        if (typeof window !== "undefined") {
+                          window.localStorage.setItem(
+                            "tripsense_last_trip_id",
+                            String(dbTripId)
+                          );
+                        }
+                        router.push(trip.openHref || `/trips/${dbTripId}`);
+                      }}
+                      className="rounded-full border-app-border px-4 text-app-slate hover:bg-app-sky"
+                    >
+                      Open Trip
+                    </Button>
+
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        void handleDeleteTrip(trip);
+                      }}
+                      disabled={deletingTripId === String(dbTripId)}
+                      className="rounded-full border-rose-200 px-4 text-rose-700 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {deletingTripId === String(dbTripId) ? "Deleting..." : "Delete"}
+                    </Button>
+                  </>
+                ) : null
               }
             />
           );

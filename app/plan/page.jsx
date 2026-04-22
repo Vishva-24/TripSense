@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { LoaderCircle, PlaneTakeoff } from "lucide-react";
 import ProgressBar from "@/components/ui/ProgressBar";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 import OptionChip from "@/components/ui/OptionChip";
 import { FormInput, FormTextArea } from "@/components/ui/FormInput";
 import { useTripPlanner } from "@/context/TripPlannerContext";

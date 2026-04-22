@@ -7,6 +7,7 @@ import TravelConnectSignin from "@/components/ui/travel-connect-signin";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { SparklesCore } from "@/components/ui/sparkles";
 import GlobeDemo from "@/components/ui/globe-demo";
+import TrailCardDemo from "@/components/ui/trail-card-demo";
 
 function DemoAiAssistatBasic() {
   const [mode, setMode] = useState<"signin" | "signup">("signin");
@@ -117,5 +118,12 @@ function SparklesPreview() {
   );
 }
 
-export { DemoAiAssistatBasic, FloatingActionMenuDemo, MotionFooterDemo, SparklesPreview, GlobeDemo };
+export {
+  DemoAiAssistatBasic,
+  FloatingActionMenuDemo,
+  MotionFooterDemo,
+  SparklesPreview,
+  GlobeDemo,
+  TrailCardDemo
+};
 

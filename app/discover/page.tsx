@@ -1,8 +1,13 @@
-import Link from "next/link";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { Compass, Sparkles } from "lucide-react";
 import { discoverTrips } from "@/lib/discoverTrips";
+import { TrailCard } from "@/components/ui/trail-card";
 
 export default function DiscoverPage() {
+  const router = useRouter();
+
   return (
     <main className="mx-auto max-w-6xl px-4 py-8 md:px-6 md:py-12">
       <section className="rounded-[32px] border border-white/60 bg-white/70 p-6 shadow-sm backdrop-blur-xl md:p-8">
@@ -28,37 +33,38 @@ export default function DiscoverPage() {
 
       <section className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {discoverTrips.map((trip) => (
-          <Link
+          <TrailCard
             key={trip.slug}
-            href={`/discover/${trip.slug}`}
-            className="group overflow-hidden rounded-[28px] border border-white/60 bg-white/75 shadow-sm backdrop-blur-xl transition duration-200 hover:-translate-y-1 hover:shadow-lg"
-          >
-            <div className="relative h-52 overflow-hidden bg-app-sky">
-              <img
-                src={trip.image}
-                alt={trip.title}
-                className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/65 via-slate-900/10 to-transparent" />
+            className="max-w-none rounded-[28px] border border-white/60 bg-white/75 shadow-sm backdrop-blur-xl"
+            imageUrl={trip.image}
+            title={trip.title}
+            location={`${trip.location} • ${trip.duration}`}
+            difficulty={trip.vibe}
+            creators={`Persona: ${trip.persona}`}
+            stats={[
+              { label: "Length", value: trip.duration },
+              { label: "Days", value: String(trip.days.length) },
+              { label: "Access", value: "Preview" }
+            ]}
+            badge={
               <span
-                className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-semibold ${trip.badgeClass}`}
+                className={`rounded-full px-3 py-1 text-xs font-semibold shadow-sm ${trip.badgeClass}`}
               >
                 {trip.persona}
               </span>
-            </div>
-
-            <div className="space-y-2 p-5">
-              <h2 className="text-xl font-bold text-app-slate">
-                {trip.title} ({trip.duration})
-              </h2>
-              <p className="text-sm font-semibold text-slate-600">
-                Vibe: {trip.vibe}
-              </p>
-              <p className="text-sm text-app-muted">
-                Open the full preplanned itinerary and explore each day before you commit.
-              </p>
-            </div>
-          </Link>
+            }
+            actionLabel="Open itinerary"
+            onDirectionsClick={() => router.push(`/discover/${trip.slug}`)}
+            onClick={() => router.push(`/discover/${trip.slug}`)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                router.push(`/discover/${trip.slug}`);
+              }
+            }}
+          />
         ))}
       </section>
     </main>

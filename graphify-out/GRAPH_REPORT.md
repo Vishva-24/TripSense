@@ -1,11 +1,11 @@
 # Graph Report - C:\Users\pujar\Documents\TripSense(WAD)  (2026-04-22)
 
 ## Corpus Check
-- 53 files · ~52,719 words
+- 56 files · ~54,442 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 193 nodes · 268 edges · 42 communities detected
+- 202 nodes · 276 edges · 44 communities detected
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 9 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
@@ -52,9 +52,11 @@
 - [[_COMMUNITY_Community 39|Community 39]]
 - [[_COMMUNITY_Community 40|Community 40]]
 - [[_COMMUNITY_Community 41|Community 41]]
+- [[_COMMUNITY_Community 42|Community 42]]
+- [[_COMMUNITY_Community 43|Community 43]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `POST()` - 39 edges
+1. `POST()` - 40 edges
 2. `getLocationImageUrl()` - 9 edges
 3. `generateStructuredJson()` - 7 edges
 4. `normalizeEmail()` - 6 edges
@@ -66,29 +68,29 @@
 10. `readGuestTripClaims()` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `POST()` --calls--> `normalizeEstimatedCostForDb()`  [INFERRED]
-  C:\Users\pujar\Documents\TripSense(WAD)\app\api\trips\[id]\regenerate\route.ts → C:\Users\pujar\Documents\TripSense(WAD)\lib\trip-pricing.ts
-- `POST()` --calls--> `normalizeEstimateNote()`  [INFERRED]
-  C:\Users\pujar\Documents\TripSense(WAD)\app\api\trips\[id]\regenerate\route.ts → C:\Users\pujar\Documents\TripSense(WAD)\lib\trip-pricing.ts
 - `POST()` --calls--> `sanitizeProfileText()`  [EXTRACTED]
   C:\Users\pujar\Documents\TripSense(WAD)\app\api\trips\[id]\regenerate\route.ts → C:\Users\pujar\Documents\TripSense(WAD)\app\api\auth\email\route.ts
 - `POST()` --calls--> `findOrCreateUserIdByEmail()`  [EXTRACTED]
   C:\Users\pujar\Documents\TripSense(WAD)\app\api\trips\[id]\regenerate\route.ts → C:\Users\pujar\Documents\TripSense(WAD)\app\api\trips\claim-guest\route.ts
 - `POST()` --calls--> `isGuestLikeEmail()`  [EXTRACTED]
   C:\Users\pujar\Documents\TripSense(WAD)\app\api\trips\[id]\regenerate\route.ts → C:\Users\pujar\Documents\TripSense(WAD)\app\api\trips\claim-guest\route.ts
+- `POST()` --calls--> `getDiscoverTripBySlug()`  [INFERRED]
+  C:\Users\pujar\Documents\TripSense(WAD)\app\api\trips\[id]\regenerate\route.ts → C:\Users\pujar\Documents\TripSense(WAD)\lib\discoverTrips.ts
+- `POST()` --calls--> `normalizeEstimatedCostForDb()`  [INFERRED]
+  C:\Users\pujar\Documents\TripSense(WAD)\app\api\trips\[id]\regenerate\route.ts → C:\Users\pujar\Documents\TripSense(WAD)\lib\trip-pricing.ts
 
 ## Communities
 
 ### Community 0 - "Community 0"
-Cohesion: 0.14
-Nodes (28): addDays(), buildDiscoverExpansionPrompt(), buildEstimatePrompt(), buildFallbackActivitiesForDay(), buildGeneratePrompt(), buildRerollPrompt(), buildSeededFallbackImage(), daysBetweenInclusive() (+20 more)
+Cohesion: 0.11
+Nodes (33): addDays(), buildDiscoverExpansionPrompt(), buildEstimatePrompt(), buildFallbackActivitiesForDay(), buildGeneratePrompt(), buildRerollPrompt(), buildSeededFallbackImage(), daysBetweenInclusive() (+25 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.19
 Nodes (11): DELETE(), findOrCreateUserIdByEmail(), GET(), hashPassword(), isGuestLikeEmail(), isValidEmail(), normalizeEmail(), PATCH() (+3 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.18
+Cohesion: 0.14
 Nodes (6): handleSaveDefaults(), handleSaveProfile(), isValidEmail(), getTodayIsoDate(), isPastPlannerDate(), normalizePlannerVibes()
 
 ### Community 3 - "Community 3"
@@ -120,23 +122,23 @@ Cohesion: 0.33
 Nodes (2): PlanTripPage(), useTripPlanner()
 
 ### Community 10 - "Community 10"
-Cohesion: 0.7
-Nodes (4): addGuestTripClaim(), handleCreateTrip(), readTravelDefaults(), resolvePlannerIdentity()
-
-### Community 11 - "Community 11"
-Cohesion: 0.4
-Nodes (0): 
-
-### Community 12 - "Community 12"
 Cohesion: 0.4
 Nodes (2): getDiscoverTripBySlug(), DiscoverTripPage()
 
+### Community 11 - "Community 11"
+Cohesion: 0.7
+Nodes (4): addGuestTripClaim(), handleCreateTrip(), readTravelDefaults(), resolvePlannerIdentity()
+
+### Community 12 - "Community 12"
+Cohesion: 0.4
+Nodes (0): 
+
 ### Community 13 - "Community 13"
-Cohesion: 0.5
-Nodes (4): formatStoredPrice(), normalizeEstimatedCostForDb(), normalizeEstimatedCurrency(), normalizeEstimateNote()
+Cohesion: 0.67
+Nodes (0): 
 
 ### Community 14 - "Community 14"
-Cohesion: 0.67
+Cohesion: 1.0
 Nodes (0): 
 
 ### Community 15 - "Community 15"
@@ -247,72 +249,88 @@ Nodes (0):
 Cohesion: 1.0
 Nodes (0): 
 
+### Community 42 - "Community 42"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 43 - "Community 43"
+Cohesion: 1.0
+Nodes (0): 
+
 ## Knowledge Gaps
-- **Thin community `Community 15`** (2 nodes): `layout.js`, `RootLayout()`
+- **Thin community `Community 14`** (2 nodes): `layout.js`, `RootLayout()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 16`** (2 nodes): `page.tsx`, `DiscoverPage()`
+- **Thin community `Community 15`** (2 nodes): `page.tsx`, `DiscoverPage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 17`** (2 nodes): `page.jsx`, `LegacyItineraryPage()`
+- **Thin community `Community 16`** (2 nodes): `page.jsx`, `LegacyItineraryPage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 18`** (2 nodes): `page.tsx`, `TripItineraryPage()`
+- **Thin community `Community 17`** (2 nodes): `page.tsx`, `TripItineraryPage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 19`** (2 nodes): `ActivityCard()`, `ActivityCard.jsx`
+- **Thin community `Community 18`** (2 nodes): `ActivityCard()`, `ActivityCard.jsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 20`** (2 nodes): `Navbar.tsx`, `syncAuthState()`
+- **Thin community `Community 19`** (2 nodes): `Navbar.tsx`, `syncAuthState()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 21`** (2 nodes): `TripCard.jsx`, `TripCard()`
+- **Thin community `Community 20`** (2 nodes): `TripCard.jsx`, `TripCard()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 22`** (2 nodes): `UtilityDrawer.jsx`, `UtilityDrawer()`
+- **Thin community `Community 21`** (2 nodes): `UtilityDrawer.jsx`, `UtilityDrawer()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 23`** (2 nodes): `cobe-globe.tsx`, `Globe()`
+- **Thin community `Community 22`** (2 nodes): `cobe-globe.tsx`, `Globe()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 24`** (2 nodes): `demo.tsx`, `DemoAiAssistatBasic()`
+- **Thin community `Community 23`** (2 nodes): `demo.tsx`, `DemoAiAssistatBasic()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 25`** (2 nodes): `floating-action-menu.tsx`, `toggleMenu()`
+- **Thin community `Community 24`** (2 nodes): `floating-action-menu.tsx`, `toggleMenu()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 26`** (2 nodes): `globe-demo.tsx`, `GlobeDemo()`
+- **Thin community `Community 25`** (2 nodes): `globe-demo.tsx`, `GlobeDemo()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 27`** (2 nodes): `motion-footer.tsx`, `scrollToTop()`
+- **Thin community `Community 26`** (2 nodes): `motion-footer.tsx`, `scrollToTop()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 28`** (2 nodes): `OptionChip.jsx`, `OptionChip()`
+- **Thin community `Community 27`** (2 nodes): `OptionChip.jsx`, `OptionChip()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 29`** (2 nodes): `ProgressBar.jsx`, `ProgressBar()`
+- **Thin community `Community 28`** (2 nodes): `ProgressBar.jsx`, `ProgressBar()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 30`** (2 nodes): `sparkles.tsx`, `SparklesCore()`
+- **Thin community `Community 29`** (2 nodes): `sparkles.tsx`, `SparklesCore()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 31`** (2 nodes): `utils.ts`, `cn()`
+- **Thin community `Community 30`** (2 nodes): `trail-card-demo.tsx`, `TrailCardDemo()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 32`** (1 nodes): `drizzle.config.ts`
+- **Thin community `Community 31`** (2 nodes): `trail-card.tsx`, `StatItem()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 33`** (1 nodes): `next-env.d.ts`
+- **Thin community `Community 32`** (2 nodes): `utils.ts`, `cn()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 34`** (1 nodes): `next.config.mjs`
+- **Thin community `Community 33`** (1 nodes): `drizzle.config.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 35`** (1 nodes): `postcss.config.mjs`
+- **Thin community `Community 34`** (1 nodes): `next-env.d.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 36`** (1 nodes): `tailwind.config.js`
+- **Thin community `Community 35`** (1 nodes): `next.config.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 37`** (1 nodes): `page.tsx`
+- **Thin community `Community 36`** (1 nodes): `postcss.config.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 38`** (1 nodes): `Button.tsx`
+- **Thin community `Community 37`** (1 nodes): `tailwind.config.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 39`** (1 nodes): `itineraryData.js`
+- **Thin community `Community 38`** (1 nodes): `icon.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 40`** (1 nodes): `index.ts`
+- **Thin community `Community 39`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 41`** (1 nodes): `schema.ts`
+- **Thin community `Community 40`** (1 nodes): `button.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 41`** (1 nodes): `itineraryData.js`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 42`** (1 nodes): `index.ts`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 43`** (1 nodes): `schema.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `POST()` connect `Community 0` to `Community 1`, `Community 5`, `Community 12`, `Community 13`?**
-  _High betweenness centrality (0.106) - this node is a cross-community bridge._
+- **Why does `POST()` connect `Community 0` to `Community 1`, `Community 10`, `Community 5`?**
+  _High betweenness centrality (0.100) - this node is a cross-community bridge._
 - **Why does `getLocationImageUrl()` connect `Community 5` to `Community 0`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
-- **Why does `getDiscoverTripBySlug()` connect `Community 12` to `Community 0`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Why does `getDiscoverTripBySlug()` connect `Community 10` to `Community 0`?**
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
 - **Are the 6 inferred relationships involving `POST()` (e.g. with `getDiscoverTripBySlug()` and `normalizeEstimatedCostForDb()`) actually correct?**
   _`POST()` has 6 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Community 0` be split into smaller, more focused modules?**
+  _Cohesion score 0.11 - nodes in this community are weakly interconnected._
+- **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.14 - nodes in this community are weakly interconnected._
