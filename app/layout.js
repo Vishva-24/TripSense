@@ -18,7 +18,15 @@ const bodyFont = Nunito_Sans({
 
 export const metadata = {
   title: "TripSense",
-  description: "AI-powered travel itinerary generator MVP"
+  description: "AI-powered travel itinerary generator MVP",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon", type: "image/png" }
+    ],
+    shortcut: ["/favicon.svg"],
+    apple: ["/icon"]
+  }
 };
 
 export default function RootLayout({ children }) {

@@ -20,7 +20,12 @@ export const vibeOptions = [
   "Luxury"
 ] as const;
 
-const vibeAliasMap: Record<string, (typeof vibeOptions)[number]> = {
+export type TravelerOption = (typeof travelerOptions)[number];
+export type BudgetOption = (typeof budgetOptions)[number];
+export type DietaryOption = (typeof dietaryOptions)[number];
+export type VibeOption = (typeof vibeOptions)[number];
+
+const vibeAliasMap: Record<string, VibeOption> = {
   chill: "Chill",
   adventure: "Adventure",
   culture: "Culture",
@@ -43,6 +48,18 @@ export function normalizePlannerVibes(values: unknown): string[] {
     .filter(Boolean);
 
   return Array.from(new Set(normalized));
+}
+
+export function isBudgetOption(value: unknown): value is BudgetOption {
+  return typeof value === "string" && budgetOptions.some((option) => option === value);
+}
+
+export function isTravelerOption(value: unknown): value is TravelerOption {
+  return typeof value === "string" && travelerOptions.some((option) => option === value);
+}
+
+export function isDietaryOption(value: unknown): value is DietaryOption {
+  return typeof value === "string" && dietaryOptions.some((option) => option === value);
 }
 
 export function getTodayIsoDate() {

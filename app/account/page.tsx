@@ -12,6 +12,8 @@ import {
 import FloatingActionMenu from "@/components/ui/floating-action-menu";
 import {
   budgetOptions,
+  isBudgetOption,
+  isTravelerOption,
   normalizePlannerVibes,
   travelerOptions,
   vibeOptions
@@ -95,11 +97,11 @@ export default function AccountPage() {
 
         setDefaults({
           budgetTier:
-            parsed.budgetTier && budgetOptions.includes(parsed.budgetTier)
+            isBudgetOption(parsed.budgetTier)
               ? parsed.budgetTier
               : "Standard",
           travelGroup:
-            parsed.travelGroup && travelerOptions.includes(parsed.travelGroup)
+            isTravelerOption(parsed.travelGroup)
               ? parsed.travelGroup
               : "Solo",
           vibe: normalizedVibes.length > 0 ? normalizedVibes : ["Chill"]

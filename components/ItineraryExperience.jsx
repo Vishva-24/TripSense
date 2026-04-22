@@ -296,6 +296,7 @@ export default function ItineraryExperience({
     if (!trip) return;
 
     const nextDietary = safeArray(trip.dietaryPrefs);
+    const nextVibes = normalizePlannerVibes(trip.vibe);
 
     setEditForm({
       destination: trip.destination || "",
@@ -303,10 +304,13 @@ export default function ItineraryExperience({
       endDate: trip.endDate || "",
       travelGroup: trip.travelGroup || "Solo",
       budgetTier: trip.budgetTier || "Standard",
-      vibe: safeArray(trip.vibe),
+      vibe: nextVibes,
       dietaryPrefs: nextDietary.length > 0 ? nextDietary : ["None"],
       mustDos: trip.mustDos || ""
     });
+    setCustomRequestTarget(null);
+    setCustomRequestText("");
+    setCustomRequestError("");
   }, [apiTripData]);
 
   const destination = apiTripData?.trip?.destination || "";
@@ -385,6 +389,10 @@ export default function ItineraryExperience({
       "Estimated by TripSense AI during trip generation."
     );
   }, [apiTripData]);
+  const hasPastEditStartDate = useMemo(
+    () => isPastPlannerDate(editForm.startDate),
+    [editForm.startDate]
+  );
 
   const isEditDateOrderValid = useMemo(() => {
     if (!editForm.startDate || !editForm.endDate) return true;
@@ -434,7 +442,7 @@ export default function ItineraryExperience({
         endDate: trip.endDate || "",
         travelGroup: trip.travelGroup || "Solo",
         budgetTier: trip.budgetTier || "Standard",
-        vibe: safeArray(trip.vibe),
+        vibe: normalizePlannerVibes(trip.vibe),
         dietaryPrefs: nextDietary.length > 0 ? nextDietary : ["None"],
         mustDos: trip.mustDos || ""
       });
@@ -460,6 +468,11 @@ export default function ItineraryExperience({
       return;
     }
 
+    if (hasPastEditStartDate) {
+      setUpdatePlanError("Start date cannot be in the past.");
+      return;
+    }
+
     if (!isEditDateOrderValid) {
       setUpdatePlanError("End date should be after start date.");
       return;
@@ -482,7 +495,7 @@ export default function ItineraryExperience({
             endDate: editForm.endDate,
             travelGroup: editForm.travelGroup,
             budgetTier: editForm.budgetTier,
-            vibe: editForm.vibe,
+            vibe: normalizePlannerVibes(editForm.vibe),
             dietaryPrefs: editForm.dietaryPrefs,
             mustDos: editForm.mustDos,
             travelerCountry:
@@ -515,84 +528,119 @@ export default function ItineraryExperience({
     }
   };
 
-  const handleReroll = async ({ activity, day }) => {
+  const requestActivityReroll = async ({ activity, day, customRequest = "" }) => {
     if (!isCustomizing) return;
 
     if (!apiTripData?.trip?.id || !activity?.id) {
-      setRerollError("Save a generated trip first, then use re-roll.");
+      throw new Error("Save a generated trip first, then use re-roll.");
+    }
+
+    setRerollingActivityId(String(activity.id));
+
+    const response = await fetch("/api/trips/re-roll", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        activityId: activity.id,
+        customRequest: customRequest.trim() || undefined,
+        context: {
+          destination: apiTripData.trip.destination,
+          budgetTier: apiTripData.trip.budgetTier,
+          travelGroup: apiTripData.trip.travelGroup,
+          vibe: normalizePlannerVibes(apiTripData.trip.vibe || []),
+          dietaryPrefs: apiTripData.trip.dietaryPrefs || [],
+          mustDos: apiTripData.trip.mustDos || "",
+          dayNumber: day.dayNumber,
+          dayDate: day.date
+        }
+      })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result?.details || result?.error || "Could not re-roll activity.");
+    }
+
+    if (!result?.activity?.id) {
+      throw new Error("Re-roll succeeded but response is missing activity data.");
+    }
+
+    setApiTripData((prev) => {
+      if (!prev) return prev;
+
+      return {
+        ...prev,
+        days: (prev.days || []).map((dayItem) => ({
+          ...dayItem,
+          activities: (dayItem.activities || []).map((activityItem) =>
+            activityItem.id === result.activity.id
+              ? {
+                  ...activityItem,
+                  title: result.activity.title || activityItem.title,
+                  description:
+                    result.activity.description || activityItem.description,
+                  costEstimate:
+                    result.activity.costEstimate ?? activityItem.costEstimate,
+                  type: result.activity.type || activityItem.type,
+                  time: result.activity.time || activityItem.time,
+                  imageUrl:
+                    result.activity.imageUrl ||
+                    activityItem.imageUrl ||
+                    getFallbackImage(
+                      result.activity.title || activityItem.title || "Activity",
+                      destination
+                    )
+                }
+              : activityItem
+          )
+        }))
+      };
+    });
+  };
+
+  const handleReroll = async ({ activity, day }) => {
+    try {
+      setRerollError("");
+      await requestActivityReroll({ activity, day });
+    } catch (error) {
+      setRerollError(
+        error instanceof Error ? error.message : "Could not re-roll activity."
+      );
+    } finally {
+      setRerollingActivityId("");
+    }
+  };
+
+  const handleOpenCustomRequest = ({ activity, day }) => {
+    setCustomRequestTarget({ activity, day });
+    setCustomRequestText("");
+    setCustomRequestError("");
+  };
+
+  const handleSubmitCustomRequest = async () => {
+    if (!customRequestTarget?.activity || !customRequestTarget?.day) return;
+
+    if (!customRequestText.trim()) {
+      setCustomRequestError("Tell TripSense what you'd like to do instead.");
       return;
     }
 
     try {
+      setCustomRequestError("");
       setRerollError("");
-      setRerollingActivityId(String(activity.id));
-
-      const response = await fetch("/api/trips/re-roll", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          activityId: activity.id,
-          context: {
-            destination: apiTripData.trip.destination,
-            budgetTier: apiTripData.trip.budgetTier,
-            travelGroup: apiTripData.trip.travelGroup,
-            vibe: apiTripData.trip.vibe || [],
-            dietaryPrefs: apiTripData.trip.dietaryPrefs || [],
-            mustDos: apiTripData.trip.mustDos || "",
-            dayNumber: day.dayNumber,
-            dayDate: day.date
-          }
-        })
+      await requestActivityReroll({
+        activity: customRequestTarget.activity,
+        day: customRequestTarget.day,
+        customRequest: customRequestText
       });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          result?.details || result?.error || "Could not re-roll activity."
-        );
-      }
-
-      if (!result?.activity?.id) {
-        throw new Error("Re-roll succeeded but response is missing activity data.");
-      }
-
-      setApiTripData((prev) => {
-        if (!prev) return prev;
-
-        return {
-          ...prev,
-          days: (prev.days || []).map((dayItem) => ({
-            ...dayItem,
-            activities: (dayItem.activities || []).map((activityItem) =>
-                    activityItem.id === result.activity.id
-                ? {
-                    ...activityItem,
-                    title: result.activity.title || activityItem.title,
-                    description:
-                      result.activity.description || activityItem.description,
-                    costEstimate:
-                      result.activity.costEstimate ?? activityItem.costEstimate,
-                    type: result.activity.type || activityItem.type,
-                    time: result.activity.time || activityItem.time,
-                    imageUrl:
-                      result.activity.imageUrl ||
-                      activityItem.imageUrl ||
-                      getFallbackImage(
-                        result.activity.title || activityItem.title || "Activity",
-                        destination
-                      )
-                  }
-                : activityItem
-            )
-          }))
-        };
-      });
+      setCustomRequestTarget(null);
+      setCustomRequestText("");
     } catch (error) {
-      setRerollError(
-        error instanceof Error ? error.message : "Could not re-roll activity."
+      setCustomRequestError(
+        error instanceof Error ? error.message : "Could not request a specific change."
       );
     } finally {
       setRerollingActivityId("");
@@ -629,10 +677,12 @@ export default function ItineraryExperience({
           <div className="space-y-4">
             <aside className="card-surface h-fit space-y-5 p-5">
               <div>
-                <h2 className="break-words text-lg font-bold leading-tight text-app-slate">
+                <h2 className="max-w-full break-words text-lg font-bold leading-tight text-app-slate [overflow-wrap:anywhere]">
                   {tripTitle}
                 </h2>
-                <p className="mt-1 text-sm text-app-muted">{tripDates}</p>
+                <p className="mt-1 break-words text-sm text-app-muted [overflow-wrap:anywhere]">
+                  {tripDates}
+                </p>
               </div>
 
               <div className="space-y-3">
@@ -692,10 +742,10 @@ export default function ItineraryExperience({
           </div>
 
           <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
-            <section className="card-surface max-h-[75vh] space-y-6 overflow-y-auto p-5">
-              <div className="sticky top-0 z-20 -mx-5 -mt-5 border-b border-app-border/70 bg-white/90 px-5 py-4 backdrop-blur">
+            <section className="card-surface flex max-h-[75vh] flex-col overflow-hidden">
+              <div className="shrink-0 border-b border-app-border/70 bg-white px-5 py-4">
                 {normalizedDays.length > 0 ? (
-                  <div className="flex gap-3 overflow-x-auto pb-2">
+                  <div className="no-scrollbar flex gap-3 overflow-x-auto overflow-y-hidden pb-1 pr-2">
                     {normalizedDays.map((day) => {
                       const isActive = day.dayNumber === selectedDay?.dayNumber;
                       return (
@@ -722,52 +772,55 @@ export default function ItineraryExperience({
                 ) : null}
               </div>
 
-              {isLoading ? (
-                <p className="rounded-xl bg-app-sky px-4 py-3 text-sm font-semibold text-app-slate">
-                  Loading generated itinerary...
-                </p>
-              ) : null}
+              <div className="min-h-0 flex-1 overflow-y-auto px-5 py-5">
+                {isLoading ? (
+                  <p className="rounded-xl bg-app-sky px-4 py-3 text-sm font-semibold text-app-slate">
+                    Loading generated itinerary...
+                  </p>
+                ) : null}
 
-              {loadError ? (
-                <p className="rounded-xl bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700">
-                  {loadError}
-                </p>
-              ) : null}
+                {loadError ? (
+                  <p className="rounded-xl bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700">
+                    {loadError}
+                  </p>
+                ) : null}
 
-              {rerollError ? (
-                <p className="rounded-xl bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700">
-                  {rerollError}
-                </p>
-              ) : null}
+                {rerollError ? (
+                  <p className="rounded-xl bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700">
+                    {rerollError}
+                  </p>
+                ) : null}
 
-              {selectedDay ? (
-                <div key={selectedDay.dayNumber} className="space-y-3">
-                  {selectedDay.activities.map((activity) => (
-                    <ActivityCard
-                      key={activity.id}
-                      activity={activity}
-                      rerolling={rerollingActivityId === String(activity.id)}
-                      rerollDisabled={!apiTripData?.trip?.id || !isCustomizing}
-                      showReroll={isCustomizing}
-                      onReroll={() =>
-                        handleReroll({ activity, day: selectedDay })
-                      }
-                    />
-                  ))}
-                </div>
-              ) : null}
+                {selectedDay ? (
+                  <div key={selectedDay.dayNumber} className="space-y-3">
+                    {selectedDay.activities.map((activity) => (
+                      <ActivityCard
+                        key={activity.id}
+                        activity={activity}
+                        rerolling={rerollingActivityId === String(activity.id)}
+                        rerollDisabled={!apiTripData?.trip?.id || !isCustomizing}
+                        showReroll={isCustomizing}
+                        onReroll={() => handleReroll({ activity, day: selectedDay })}
+                        onSpecificRequest={() =>
+                          handleOpenCustomRequest({ activity, day: selectedDay })
+                        }
+                      />
+                    ))}
+                  </div>
+                ) : null}
 
-              {!isLoading && !loadError && normalizedDays.length === 0 ? (
-                <p className="rounded-xl bg-app-sky px-4 py-3 text-sm font-semibold text-app-slate">
-                  {activeTripId
-                    ? "No activities found yet for this trip."
-                    : "Open a saved trip from My Trips to view itinerary details."}
-                </p>
-              ) : null}
+                {!isLoading && !loadError && normalizedDays.length === 0 ? (
+                  <p className="rounded-xl bg-app-sky px-4 py-3 text-sm font-semibold text-app-slate">
+                    {activeTripId
+                      ? "No activities found yet for this trip."
+                      : "Open a saved trip from My Trips to view itinerary details."}
+                  </p>
+                ) : null}
+              </div>
             </section>
 
             <aside className="space-y-4">
-              <div className="card-surface space-y-3 overflow-hidden p-5">
+              <div className="card-surface space-y-4 overflow-hidden p-5">
                 <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-app-muted">
                   Map
                 </h3>
@@ -786,10 +839,10 @@ export default function ItineraryExperience({
                     </div>
                   )}
                 </div>
-                <div className="w-full min-w-0 overflow-hidden">
+                <div className="w-full min-w-0 rounded-xl border border-app-border/70 bg-app-sky/40 px-3 py-2">
                   <p className="flex w-full min-w-0 items-start gap-2 text-xs font-semibold text-app-muted">
                     <MapPin size={14} className="mt-0.5 shrink-0" />
-                    <span className="block min-w-0 flex-1 break-words leading-5">
+                    <span className="block min-w-0 flex-1 break-all whitespace-normal leading-5">
                       {destination || "No location selected"}
                     </span>
                   </p>
@@ -809,6 +862,95 @@ export default function ItineraryExperience({
           <p className="mt-4 rounded-xl bg-app-sky px-4 py-3 text-sm font-semibold text-app-slate">
             Preparing trip selection...
           </p>
+        ) : null}
+
+        {customRequestTarget ? (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 px-4 py-6">
+            <div className="w-full max-w-lg rounded-2xl border border-app-border bg-white p-5 shadow-xl md:p-6">
+              <div className="mb-4 flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-app-muted">
+                    Specific change
+                  </p>
+                  <h2 className="mt-2 text-2xl font-bold text-app-slate">
+                    What would you rather do here?
+                  </h2>
+                  <p className="mt-1 text-sm text-app-muted">
+                    TripSense will keep the time slot and reshape this stop around
+                    your request.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCustomRequestTarget(null);
+                    setCustomRequestText("");
+                    setCustomRequestError("");
+                  }}
+                  className="rounded-lg border border-app-border p-2 text-app-muted transition hover:bg-app-sky"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+
+              <div className="rounded-2xl border border-app-border bg-app-sky/35 px-4 py-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-app-muted">
+                  Current activity
+                </p>
+                <p className="mt-2 text-sm font-bold text-app-slate">
+                  {customRequestTarget.activity?.time} · {customRequestTarget.activity?.title}
+                </p>
+                <p className="mt-1 text-sm text-app-muted">
+                  {customRequestTarget.activity?.description}
+                </p>
+              </div>
+
+              <div className="mt-4">
+                <label className="mb-2 block text-sm font-semibold text-app-slate">
+                  Tell TripSense what you want instead
+                </label>
+                <textarea
+                  rows={4}
+                  value={customRequestText}
+                  onChange={(event) => setCustomRequestText(event.target.value)}
+                  placeholder="Example: Replace this with a scenic hot spring stop and a tea house visit."
+                  className="w-full rounded-2xl border border-app-border bg-white px-4 py-3 text-sm text-app-slate outline-none transition focus:border-app-slate/30 focus:ring-2 focus:ring-app-sky"
+                />
+              </div>
+
+              {customRequestError ? (
+                <p className="mt-4 rounded-xl bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700">
+                  {customRequestError}
+                </p>
+              ) : null}
+
+              <div className="mt-5 flex flex-wrap justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCustomRequestTarget(null);
+                    setCustomRequestText("");
+                    setCustomRequestError("");
+                  }}
+                  className="rounded-xl border border-app-border px-4 py-2 text-sm font-semibold text-app-slate transition hover:bg-app-sky"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    void handleSubmitCustomRequest();
+                  }}
+                  disabled={rerollingActivityId === String(customRequestTarget.activity?.id)}
+                  className="rounded-xl bg-app-slate px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {rerollingActivityId === String(customRequestTarget.activity?.id)
+                    ? "Updating..."
+                    : "Request Change"}
+                </button>
+              </div>
+            </div>
+          </div>
         ) : null}
 
         {isEditOpen ? (
@@ -858,6 +1000,7 @@ export default function ItineraryExperience({
                     <input
                       type="date"
                       value={editForm.startDate}
+                      min={todayIsoDate}
                       onChange={(event) =>
                         setEditForm((prev) => ({
                           ...prev,
@@ -874,6 +1017,7 @@ export default function ItineraryExperience({
                     <input
                       type="date"
                       value={editForm.endDate}
+                      min={editForm.startDate || todayIsoDate}
                       onChange={(event) =>
                         setEditForm((prev) => ({
                           ...prev,
@@ -884,6 +1028,12 @@ export default function ItineraryExperience({
                     />
                   </div>
                 </div>
+
+                {hasPastEditStartDate ? (
+                  <p className="text-sm font-semibold text-rose-600">
+                    Start date cannot be in the past.
+                  </p>
+                ) : null}
 
                 {!isEditDateOrderValid ? (
                   <p className="text-sm font-semibold text-rose-600">

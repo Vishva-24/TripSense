@@ -75,6 +75,10 @@ function isValidDateString(value: string) {
   return !Number.isNaN(new Date(`${value}T00:00:00Z`).getTime());
 }
 
+function getTodayIsoDate() {
+  return new Date().toISOString().split("T")[0];
+}
+
 function daysBetweenInclusive(startDate: string, endDate: string) {
   const start = new Date(`${startDate}T00:00:00Z`);
   const end = new Date(`${endDate}T00:00:00Z`);
@@ -312,6 +316,13 @@ export async function POST(request: NextRequest) {
     if (!isValidDateString(startDate) || !isValidDateString(endDate)) {
       return NextResponse.json(
         { error: "Dates must be in YYYY-MM-DD format." },
+        { status: 400 }
+      );
+    }
+
+    if (startDate < getTodayIsoDate()) {
+      return NextResponse.json(
+        { error: "Start date cannot be in the past." },
         { status: 400 }
       );
     }

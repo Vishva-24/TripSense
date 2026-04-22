@@ -9,6 +9,7 @@ export const runtime = "nodejs";
 
 type ReRollRequest = {
   activityId?: string | number;
+  customRequest?: string;
   context?: {
     destination?: string;
     budgetTier?: string;
@@ -66,6 +67,7 @@ function buildRerollPrompt(input: {
   type: "food" | "landmark" | "transit";
   currentTitle: string;
   currentDescription: string;
+  customRequest: string;
 }) {
   return `
 SYSTEM INSTRUCTIONS:
@@ -84,6 +86,7 @@ RULES:
 - Respect destination, budget, travel group, vibe, dietary preferences, and must-dos.
 - Do not repeat the current activity title or description.
 - Keep suggestion realistic for Day ${input.dayNumber} (${input.dayDate}).
+- If a custom request is provided, make it the top priority while staying realistic for the same destination and time slot.
 
 CURRENT TRIP CONTEXT:
 ${JSON.stringify(
@@ -110,6 +113,9 @@ ${JSON.stringify(
     null,
     2
   )}
+
+CUSTOM REQUEST:
+${input.customRequest || "None"}
 `;
 }
 
@@ -117,6 +123,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as ReRollRequest;
     const activityId = parsePositiveInt(body.activityId);
+    const customRequest = String(body.customRequest || "").trim();
 
     if (!activityId) {
       return NextResponse.json(
@@ -165,7 +172,8 @@ export async function POST(request: NextRequest) {
       time: activityRow.time,
       type: activityRow.type,
       currentTitle: activityRow.title,
-      currentDescription: activityRow.description
+      currentDescription: activityRow.description,
+      customRequest
     });
 
     const reroll = await generateStructuredJson<ReRollResponse>({
