@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -13,9 +13,15 @@ import {
   Users,
   Wand2
 } from "lucide-react";
-import { SparklesCore } from "@/components/ui/sparkles";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { Globe } from "@/components/ui/cobe-globe";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/interfaces-carousel";
 
 const starterPaths = [
   {
@@ -160,21 +166,6 @@ export default function HomePage() {
     <div className="bg-background text-foreground">
       <main className="relative z-10 overflow-hidden rounded-b-[2.5rem] border-b border-white/50 bg-gradient-to-br from-blue-50 via-sky-50 to-blue-100 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.35)]">
         <section className="relative isolate overflow-hidden px-4 pb-14 pt-10 md:px-6 md:pb-20 md:pt-14">
-          <div className="pointer-events-none absolute inset-0 opacity-70">
-            <SparklesCore
-              id="tripsense-home-sparkles"
-              background="transparent"
-              minSize={0.4}
-              maxSize={1.3}
-              speed={0.8}
-              particleDensity={110}
-              particleColor="#94a3b8"
-              className="h-full w-full"
-            />
-          </div>
-
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(125,211,252,0.35),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(251,191,36,0.2),transparent_24%)]" />
-
           <div className="relative mx-auto max-w-6xl">
             <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
               <motion.div
@@ -251,51 +242,36 @@ export default function HomePage() {
                 transition={{ duration: 0.65, delay: 0.1 }}
                 className="relative"
               >
-                <div className="grid gap-4 md:grid-cols-[1.02fr_0.98fr]">
-                  <article className="overflow-hidden rounded-[2rem] border border-white/75 bg-white/85 shadow-[0_24px_60px_-32px_rgba(15,23,42,0.45)] backdrop-blur-sm">
-                    <div className="relative h-72 md:h-full min-h-[24rem]">
-                      <img
-                        src={showcaseTrips[0].imageUrl}
-                        alt={showcaseTrips[0].title}
-                        className="h-full w-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
-                      <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">Featured route</p>
-                        <h2 className="mt-3 text-3xl font-extrabold leading-tight">{showcaseTrips[0].title}</h2>
-                        <p className="mt-2 text-sm text-white/80">{showcaseTrips[0].subtitle}</p>
-                        <p className="mt-4 inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
-                          {showcaseTrips[0].note}
-                        </p>
-                      </div>
-                    </div>
-                  </article>
-
-                  <div className="flex flex-col gap-4">
-                    {showcaseTrips.slice(1).map((trip, index) => (
-                      <article
-                        key={trip.title}
-                        className="overflow-hidden rounded-[1.75rem] border border-white/75 bg-white/82 shadow-sm backdrop-blur-sm"
-                      >
-                        <div className="grid min-h-[12rem] md:grid-cols-[0.9fr_1.1fr]">
-                          <img src={trip.imageUrl} alt={trip.title} className="h-full w-full object-cover" />
-                          <div className="flex flex-col justify-between p-4">
-                            <div>
-                              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
-                                Route {index + 2}
+                <Carousel opts={{ loop: true }} className="w-full">
+                  <CarouselContent>
+                    {showcaseTrips.map((trip, index) => (
+                      <CarouselItem key={trip.title}>
+                        <article className="overflow-hidden rounded-[2rem] border border-white/75 bg-white/85 shadow-[0_24px_60px_-32px_rgba(15,23,42,0.45)] backdrop-blur-sm">
+                          <div className="relative h-72 md:h-full min-h-[28rem]">
+                            <img
+                              src={trip.imageUrl}
+                              alt={trip.title}
+                              className="h-full w-full object-cover absolute inset-0"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
+                            <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">
+                                {index === 0 ? "Featured route" : `Route ${index + 1}`}
                               </p>
-                              <h3 className="mt-2 text-xl font-bold text-slate-900">{trip.title}</h3>
-                              <p className="mt-2 text-sm text-slate-600">{trip.subtitle}</p>
+                              <h2 className="mt-3 text-3xl font-extrabold leading-tight">{trip.title}</h2>
+                              <p className="mt-2 text-sm text-white/80">{trip.subtitle}</p>
+                              <p className="mt-4 inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
+                                {trip.note}
+                              </p>
                             </div>
-                            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                              {trip.note}
-                            </p>
                           </div>
-                        </div>
-                      </article>
+                        </article>
+                      </CarouselItem>
                     ))}
-                  </div>
-                </div>
+                  </CarouselContent>
+                  <CarouselPrevious className="left-4 bg-white/50 backdrop-blur-md hover:bg-white/80 border-none text-slate-800" />
+                  <CarouselNext className="right-4 bg-white/50 backdrop-blur-md hover:bg-white/80 border-none text-slate-800" />
+                </Carousel>
               </motion.div>
             </div>
           </div>

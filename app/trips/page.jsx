@@ -71,7 +71,8 @@ async function claimGuestTripsForUser(userEmail) {
   if (claimsForRequest.length === 0) return;
 
   try {
-    const response = await fetch("/api/trips/claim-guest", {
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+    const response = await fetch(`${baseUrl}/api/trips/claim-guest`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -161,8 +162,9 @@ export default function TripsHubPage() {
         setDbTrips([]);
         await claimGuestTripsForUser(userEmail);
 
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "";
         const response = await fetch(
-          `/api/trips?userEmail=${encodeURIComponent(userEmail)}`,
+          `${baseUrl}/api/trips?userEmail=${encodeURIComponent(userEmail)}`,
           { cache: "no-store" }
         );
         const result = await response.json();
@@ -196,6 +198,7 @@ export default function TripsHubPage() {
             title: `${trip.destination} - ${days} Days`,
             dates,
             status: "Completed",
+            agentNotified: trip.agentNotified,
             image: trip.coverImage,
             openHref: `/trips/${trip.id}`
           };
@@ -241,8 +244,9 @@ export default function TripsHubPage() {
       setLoadError("");
       setDeletingTripId(String(tripId));
 
+      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "";
       const response = await fetch(
-        `/api/trips/${tripId}?userEmail=${encodeURIComponent(userEmail)}`,
+        `${baseUrl}/api/trips/${tripId}?userEmail=${encodeURIComponent(userEmail)}`,
         { method: "DELETE" }
       );
       const result = await response.json();
@@ -316,11 +320,11 @@ export default function TripsHubPage() {
               imageUrl={trip.image || `https://picsum.photos/seed/${encodeURIComponent(summary.destination)}/900/600`}
               title={summary.destination}
               location={summary.dates}
-              difficulty={summary.status}
+              difficulty={trip.agentNotified ? "Agent Notified" : summary.status}
               creators="Saved itinerary ready to reopen or manage"
               stats={[
                 { label: "Length", value: summary.duration },
-                { label: "Status", value: summary.status },
+                { label: "Status", value: trip.agentNotified ? "Agent Notified" : summary.status },
                 { label: "Access", value: canOpen ? "Open" : "Unavailable" }
               ]}
               actionLabel="Open trip"

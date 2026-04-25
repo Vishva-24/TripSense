@@ -6,6 +6,7 @@ import {
   ArrowLeft,
   Check,
   Clock3,
+  Headset,
   Lock,
   LockOpen,
   MapPin,
@@ -119,6 +120,40 @@ export default function ItineraryExperience({
   });
   const todayIsoDate = useMemo(() => getTodayIsoDate(), []);
 
+  const [isContactingAgent, setIsContactingAgent] = useState(false);
+  const [agentContacted, setAgentContacted] = useState(false);
+  const [contactAgentError, setContactAgentError] = useState("");
+
+  const handleContactAgent = async () => {
+    if (!apiTripData?.trip?.id || !apiTripData?.trip?.userId) return;
+    try {
+      setContactAgentError("");
+      setIsContactingAgent(true);
+      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+      const response = await fetch(`${baseUrl}/api/agent-requests`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          trip_id: apiTripData.trip.id,
+          user_id: apiTripData.trip.userId
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to contact agent: ${response.statusText}`);
+      }
+
+      setAgentContacted(true);
+    } catch (error) {
+      console.error(error);
+      setContactAgentError(error.message || "Could not connect to FastAPI backend.");
+    } finally {
+      setIsContactingAgent(false);
+    }
+  };
+
   useEffect(() => {
     let isDisposed = false;
     const controller = new AbortController();
@@ -131,8 +166,9 @@ export default function ItineraryExperience({
         setApiTripData(null);
         setIsLoading(true);
 
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "";
         const response = await fetch(
-          `/api/trips/${encodeURIComponent(selectedTripId)}`,
+          `${baseUrl}/api/trips/${encodeURIComponent(selectedTripId)}`,
           {
             cache: "no-store",
             signal: controller.signal
@@ -311,6 +347,7 @@ export default function ItineraryExperience({
     setCustomRequestTarget(null);
     setCustomRequestText("");
     setCustomRequestError("");
+    setAgentContacted(trip.agentNotified === true);
   }, [apiTripData]);
 
   const destination = apiTripData?.trip?.destination || "";
@@ -482,8 +519,9 @@ export default function ItineraryExperience({
       setUpdatePlanError("");
       setIsUpdatingPlan(true);
 
+      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "";
       const response = await fetch(
-        `/api/trips/${encodeURIComponent(activeTripId)}/regenerate`,
+        `${baseUrl}/api/trips/${encodeURIComponent(activeTripId)}/regenerate`,
         {
           method: "POST",
           headers: {
@@ -537,7 +575,8 @@ export default function ItineraryExperience({
 
     setRerollingActivityId(String(activity.id));
 
-    const response = await fetch("/api/trips/re-roll", {
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+    const response = await fetch(`${baseUrl}/api/trips/re-roll`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -738,6 +777,59 @@ export default function ItineraryExperience({
                 {isCustomizing ? <Lock size={16} /> : <LockOpen size={16} />}
                 {isCustomizing ? "Customization Enabled" : "Customize this Trip"}
               </button>
+
+            </aside>
+
+            <aside className="card-surface h-fit space-y-3 p-5">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-app-muted">
+                  Support
+                </p>
+                <h3 className="mt-2 text-lg font-bold text-app-slate">
+                  Expert Assistance
+                </h3>
+                <p className="mt-1 text-sm leading-6 text-app-muted">
+                  Need help perfecting your itinerary? Our travel agents are ready to assist.
+                </p>
+              </div>
+
+              {agentContacted ? (
+                <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+                  <div className="flex items-center gap-2">
+                    <Check size={16} />
+                    Agent Notified!
+                  </div>
+                  <p className="mt-1 text-xs font-normal text-emerald-600">
+                    We have received your trip details and will reach out to you shortly.
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    onClick={handleContactAgent}
+                    disabled={isContactingAgent || !apiTripData?.trip?.id}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-app-border bg-white px-4 py-2 text-sm font-semibold text-app-slate transition hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {isContactingAgent ? (
+                      <>
+                        <span className="h-4 w-4 animate-spin rounded-full border-2 border-app-slate border-r-transparent" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Headset size={16} />
+                        Contact Our Agent
+                      </>
+                    )}
+                  </button>
+                  {contactAgentError && (
+                    <p className="text-xs font-semibold text-rose-600 text-center">
+                      {contactAgentError}
+                    </p>
+                  )}
+                </>
+              )}
             </aside>
           </div>
 
